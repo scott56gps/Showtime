@@ -8,5 +8,16 @@
 import SwiftUI
 
 class WatchlistViewModel: ObservableObject {
-    let movie = Movie(title: "Rush Hour 2")
+    private let movie = Movie(title: "Rush Hour 2")
+    
+    // The properties of the ViewModel are accessible to the View, and
+    //  thus should only be applicable to the View
+    var title: String {
+        movie.title
+    }
+    
+    var poster: String {
+        // magic to get poster image from the model's posterUrl
+        "Stilus Fantasticus"
+    }
 }
