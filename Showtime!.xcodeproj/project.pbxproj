@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFAB26328EB300011317 /* Showtime_App.swift */; };
-		13C1CFAE26328EB300011317 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFAD26328EB300011317 /* ContentView.swift */; };
+		13C1CFAE26328EB300011317 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFAD26328EB300011317 /* WatchlistView.swift */; };
 		13C1CFB026328EC100011317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1CFAF26328EC100011317 /* Assets.xcassets */; };
 		13C1CFB326328EC100011317 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1CFB226328EC100011317 /* Preview Assets.xcassets */; };
 		13C1CFBE26328EC300011317 /* Showtime_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFBD26328EC300011317 /* Showtime_Tests.swift */; };
 		13C1CFC926328EC300011317 /* Showtime_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFC826328EC300011317 /* Showtime_UITests.swift */; };
 		13C1CFDA263294CA00011317 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFD9263294CA00011317 /* Movie.swift */; };
+		13C1CFE82632980100011317 /* WatchlishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFE72632980100011317 /* WatchlishViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		13C1CFA826328EB300011317 /* Showtime!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Showtime!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C1CFAB26328EB300011317 /* Showtime_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showtime_App.swift; sourceTree = "<group>"; };
-		13C1CFAD26328EB300011317 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		13C1CFAD26328EB300011317 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
 		13C1CFAF26328EC100011317 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13C1CFB226328EC100011317 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		13C1CFB426328EC100011317 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		13C1CFC826328EC300011317 /* Showtime_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showtime_UITests.swift; sourceTree = "<group>"; };
 		13C1CFCA26328EC300011317 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13C1CFD9263294CA00011317 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		13C1CFE72632980100011317 /* WatchlishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlishViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +139,7 @@
 		13C1CFDE263296DD00011317 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				13C1CFAD26328EB300011317 /* ContentView.swift */,
+				13C1CFAD26328EB300011317 /* WatchlistView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,6 +155,7 @@
 		13C1CFE0263296EE00011317 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				13C1CFE72632980100011317 /* WatchlishViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -286,8 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13C1CFAE26328EB300011317 /* ContentView.swift in Sources */,
+				13C1CFAE26328EB300011317 /* WatchlistView.swift in Sources */,
 				13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */,
+				13C1CFE82632980100011317 /* WatchlishViewModel.swift in Sources */,
 				13C1CFDA263294CA00011317 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

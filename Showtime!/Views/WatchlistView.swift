@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WatchlistView: View {
+    @ObservedObject var viewModel: WatchlistViewModel
     var body: some View {
         Text("Hello, world!")
             .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct WatchlistView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WatchlistView(viewModel: WatchlistViewModel())
     }
 }
