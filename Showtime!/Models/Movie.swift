@@ -10,4 +10,5 @@ import Foundation
 struct Movie: Codable {
     var title: String
     var posterUrl: URL?
+    var isLiked: Bool
 }

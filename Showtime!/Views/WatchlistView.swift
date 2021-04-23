@@ -10,8 +10,14 @@ import SwiftUI
 struct WatchlistView: View {
     @ObservedObject var viewModel: WatchlistViewModel
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text(viewModel.title)
+            Text(viewModel.poster)
+            Toggle(isOn: viewModel.isLiked) {
+                "I Like This"
+            }
+            
+        }
     }
 }
 
