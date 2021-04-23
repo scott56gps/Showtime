@@ -17,6 +17,8 @@
 		13C1CFE82632980100011317 /* WatchlishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFE72632980100011317 /* WatchlishViewModel.swift */; };
 		13C1CFF52632A2C700011317 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFF42632A2C700011317 /* CheckboxToggleStyle.swift */; };
 		13C1CFFA2632A55900011317 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFF92632A55900011317 /* APIClient.swift */; };
+		13C1D0002632A8C000011317 /* WatchlistClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFFF2632A8C000011317 /* WatchlistClient.swift */; };
+		13C1D00C2632AA5100011317 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1D00B2632AA5100011317 /* MovieResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		13C1CFE72632980100011317 /* WatchlishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlishViewModel.swift; sourceTree = "<group>"; };
 		13C1CFF42632A2C700011317 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		13C1CFF92632A55900011317 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		13C1CFFF2632A8C000011317 /* WatchlistClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistClient.swift; sourceTree = "<group>"; };
+		13C1D00B2632AA5100011317 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 		13C1CFAA26328EB300011317 /* Showtime! */ = {
 			isa = PBXGroup;
 			children = (
+				13C1CFFE2632A82500011317 /* APIClients */,
 				13C1CFE0263296EE00011317 /* ViewModels */,
 				13C1CFDF263296E500011317 /* Models */,
 				13C1CFDE263296DD00011317 /* Views */,
@@ -110,7 +115,6 @@
 				13C1CFAF26328EC100011317 /* Assets.xcassets */,
 				13C1CFB426328EC100011317 /* Info.plist */,
 				13C1CFB126328EC100011317 /* Preview Content */,
-				13C1CFF92632A55900011317 /* APIClient.swift */,
 			);
 			path = "Showtime!";
 			sourceTree = "<group>";
@@ -164,6 +168,24 @@
 				13C1CFE72632980100011317 /* WatchlishViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		13C1CFFE2632A82500011317 /* APIClients */ = {
+			isa = PBXGroup;
+			children = (
+				13C1D00A2632AA2500011317 /* Responses */,
+				13C1CFF92632A55900011317 /* APIClient.swift */,
+				13C1CFFF2632A8C000011317 /* WatchlistClient.swift */,
+			);
+			path = APIClients;
+			sourceTree = "<group>";
+		};
+		13C1D00A2632AA2500011317 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				13C1D00B2632AA5100011317 /* MovieResponse.swift */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,7 +322,9 @@
 				13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */,
 				13C1CFE82632980100011317 /* WatchlishViewModel.swift in Sources */,
 				13C1CFDA263294CA00011317 /* Movie.swift in Sources */,
+				13C1D00C2632AA5100011317 /* MovieResponse.swift in Sources */,
 				13C1CFFA2632A55900011317 /* APIClient.swift in Sources */,
+				13C1D0002632A8C000011317 /* WatchlistClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
