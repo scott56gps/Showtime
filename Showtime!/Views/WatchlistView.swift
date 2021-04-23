@@ -13,10 +13,10 @@ struct WatchlistView: View {
         VStack {
             Text(viewModel.title)
             Text(viewModel.poster)
-            Toggle(isOn: viewModel.isLiked) {
-                "I Like This"
+            Toggle(isOn: $viewModel.isLiked) {
+                Text("I Like This")
             }
-            
+            .toggleStyle(CheckboxToggleStyle())
         }
     }
 }

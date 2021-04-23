@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class WatchlistViewModel: ObservableObject {
-    private let movie = Movie(title: "Rush Hour 2", isLiked: false)
+    @Published private var movie = Movie(title: "Rush Hour 2", isLiked: false)
     
     // The properties of the ViewModel are accessible to the View, and
     //  thus should only be applicable to the View
@@ -21,6 +21,7 @@ class WatchlistViewModel: ObservableObject {
         "Stilus Fantasticus"
     }
     var isLiked: Bool {
-        movie.isLiked
+        get { movie.isLiked }
+        set { movie.isLiked = newValue }
     }
 }
