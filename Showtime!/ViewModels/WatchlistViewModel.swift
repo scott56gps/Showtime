@@ -10,17 +10,11 @@ import Combine
 import SwiftUI
 
 class WatchlistViewModel: ObservableObject {
-    @Published private var movie: Movie = Movie(id: 0, title: "Placeholder")
-    var cancellationToken: AnyCancellable?
+    @Published private var movie: [Movie]?
+    private let movieService: MovieService
     
     // The properties of the ViewModel are accessible to the View, and
     //  thus should only be applicable to the View
-    var title: String = ""
-    var poster = URLImage(imageUrl: "")
-//    var isLiked: Bool {
-//        get { movie.isLiked }
-//        set { movie.isLiked = newValue }
-//    }
     
     init() {
         getWatchlist()
@@ -61,24 +55,6 @@ extension WatchlistViewModel {
 //                print("Completed Poster Request")
 //            }, receiveValue: { self.poster = Image(uiImage: $0) })
 //    }
-}
-
-final class ImageLoader: ObservableObject {
-    @Published public var imageData: Data
-    
-    init(url imageUrl: String) {
-        self.imageData = Data()
-        
-        guard let url = URL(string: imageUrl) else { return }
-        PosterImageClient.request(imageUrl)
-            .mapError { (error) -> Error in
-                print(error)
-                return error
-            }
-            .sink(receiveCompletion: { _ in
-                print("Completed Image Loader Request")
-            }, receiveValue: { self.imageData = $0.pngData() ?? Data() })
-    }
 }
 
 struct URLImage: View {
