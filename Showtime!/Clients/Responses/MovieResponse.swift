@@ -9,8 +9,4 @@ import Foundation
 
 struct MovieResponse: Codable {
     let movie: Movie
-    
-    enum CodingKeys: String, CodingKey {
-        case movie = "results"
-    }
 }

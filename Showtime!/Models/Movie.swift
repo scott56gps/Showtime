@@ -8,7 +8,14 @@
 import Foundation
 
 struct Movie: Codable {
+    var id: Int
     var title: String
-    var posterUrl: URL?
-    var isLiked: Bool
+    var posterUrl: String?
+//    var isLiked: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case posterUrl = "poster_url"
+        case id
+        case title
+    }
 }

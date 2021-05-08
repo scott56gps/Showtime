@@ -12,11 +12,11 @@ struct WatchlistView: View {
     var body: some View {
         VStack {
             Text(viewModel.title)
-            Text(viewModel.poster)
-            Toggle(isOn: $viewModel.isLiked) {
-                Text("I Like This")
-            }
-            .toggleStyle(CheckboxToggleStyle())
+            viewModel.poster
+//            Toggle(isOn: $viewModel.isLiked) {
+//                Text("I Like This")
+//            }
+//            .toggleStyle(CheckboxToggleStyle())
         }
     }
 }

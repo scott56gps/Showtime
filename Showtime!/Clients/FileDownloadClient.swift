@@ -1,5 +1,5 @@
 //
-//  APIClient.swift
+//  FileDownloadClient.swift
 //  Showtime!
 //
 //  Created by Scott Nicholes on 4/23/21.
@@ -7,19 +7,19 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
-struct APIClient {
+struct FileDownloadClient {
     struct Response<T> {
         let value: T
         let response: URLResponse
     }
     
-    func request<T: Decodable>(_ request: URLRequest) -> AnyPublisher<Response<T>, Error> {
+    func request<T: UIImage>(_ request: URLRequest) -> AnyPublisher<Response<T>, Error> {
         return URLSession.shared
-            .dataTaskPublisher(for: request)
+            .downloadTaskPublisher(for: request)
             .tryMap { result -> Response<T> in
-                let value = try JSONDecoder().decode(T.self, from: result.data)
-                return Response(value: value, response: result.response)
+                return Response(value: UIImage(contentsOfFile: result.url.path)! as! T, response: result.response)
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
