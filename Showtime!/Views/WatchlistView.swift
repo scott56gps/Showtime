@@ -10,19 +10,12 @@ import SwiftUI
 struct WatchlistView: View {
     @ObservedObject var viewModel: WatchlistViewModel
     var body: some View {
-        VStack {
-            Text(viewModel.title)
-            viewModel.poster
-//            Toggle(isOn: $viewModel.isLiked) {
-//                Text("I Like This")
-//            }
-//            .toggleStyle(CheckboxToggleStyle())
-        }
+        Text("Hola")
     }
 }
 
 struct WatchlistView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchlistView(viewModel: WatchlistViewModel())
+        WatchlistView(viewModel: WatchlistViewModel(movieService: MovieService()))
     }
 }

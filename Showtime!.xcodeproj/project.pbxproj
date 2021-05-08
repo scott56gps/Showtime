@@ -25,6 +25,7 @@
 		13F5CC392646B05B00C1808E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC382646B05B00C1808E /* ImageLoader.swift */; };
 		13F5CC3E2646B13D00C1808E /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC3D2646B13D00C1808E /* AsyncImage.swift */; };
 		13F5CC442646BC8900C1808E /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC432646BC8800C1808E /* MovieService.swift */; };
+		13F5CC492646D21100C1808E /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC482646D21100C1808E /* MovieCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		13F5CC382646B05B00C1808E /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		13F5CC3D2646B13D00C1808E /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		13F5CC432646BC8800C1808E /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		13F5CC482646D21100C1808E /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				13C1CFAD26328EB300011317 /* WatchlistView.swift */,
 				13C1CFF42632A2C700011317 /* CheckboxToggleStyle.swift */,
+				13F5CC482646D21100C1808E /* MovieCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				13F5CC392646B05B00C1808E /* ImageLoader.swift in Sources */,
 				132224FF2632CD6800152667 /* URLSessionExtensions.swift in Sources */,
 				13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */,
+				13F5CC492646D21100C1808E /* MovieCard.swift in Sources */,
 				13C1CFE82632980100011317 /* WatchlistViewModel.swift in Sources */,
 				13F5CC442646BC8900C1808E /* MovieService.swift in Sources */,
 				13C1CFDA263294CA00011317 /* Movie.swift in Sources */,
