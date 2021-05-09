@@ -11,18 +11,28 @@ import Foundation
 
 class ImageViewModel: ObservableObject {
     @Published var image: UIImage?
+    private let imageService: ImageService
     private var cancellable: AnyCancellable?
+    
+    init() {
+        self.imageService = ImageService()
+    }
     
     deinit {
         cancel()
     }
     
     func load(with url: URL) {
-        cancellable = URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.image = $0 }
+        cancellable = imageService.fetchImage(from: url) { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let image):
+                self.image = image
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
     
     func cancel() {
