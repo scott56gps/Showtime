@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct WatchlistView: View {
-    @ObservedObject var viewModel: WatchlistViewModel
+    @StateObject var viewModel: WatchlistViewModel = WatchlistViewModel()
     var body: some View {
-        Text("Hola")
+        Group {
+            if viewModel.movies != nil {
+                MovieCarouselView(movies: viewModel.movies!)
+            } else {
+                Text("Loading...")
+            }
+        }
+        .onAppear(perform: {
+            viewModel.loadWatchlist()
+        })
     }
 }
 
 struct WatchlistView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchlistView(viewModel: WatchlistViewModel(movieService: MovieService()))
+        WatchlistView()
     }
 }

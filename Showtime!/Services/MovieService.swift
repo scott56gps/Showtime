@@ -6,24 +6,26 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
 
 struct MovieService {
     private let apiKey = "PUT API KEY HERE"
     private let baseAPIURLString = "http://localhost:8000/"
     
-    func getMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MovieResponse, MovieRetrievalError>) -> ()) {
+    func getMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<[Movie], MovieRetrievalError>) -> ()) -> AnyCancellable? {
         guard let url = URL(string: "\(baseAPIURLString)\(endpoint.rawValue)") else {
             completion(.failure(.invalidEndpoint))
-            return
+            return nil
         }
         
-        fetchURLToType(url: url, completion: completion)
+        return fetchURLToType(url: url, completion: completion)
     }
     
-    private func fetchURLToType<T: Decodable>(url: URL, parameters: [String : String]? = nil, completion: @escaping (Result<T, MovieRetrievalError>) -> ()) {
+    private func fetchURLToType<T: Decodable>(url: URL, parameters: [String : String]? = nil, completion: @escaping (Result<T, MovieRetrievalError>) -> ()) -> AnyCancellable? {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             completion(.failure(.invalidEndpoint))
-            return
+            return nil
         }
         
         var queryItems: [URLQueryItem] = []
@@ -35,22 +37,31 @@ struct MovieService {
         urlComponents.queryItems = queryItems
         guard let requestUrl = urlComponents.url else {
             completion(.failure(.invalidEndpoint))
-            return
+            return nil
         }
         
-        URLSession.shared.dataTaskPublisher(for: requestUrl)
-            .tryMap { result -> Array<T> in
+        return URLSession.shared.dataTaskPublisher(for: requestUrl)
+            .tryMap { result -> T in
                 guard let response = result.response as? HTTPURLResponse, response.statusCode == 200 else {
                     completion(.failure(.invalidResponse))
-                    return []
+                    throw MovieRetrievalError.invalidResponse
                 }
-                return try JSONDecoder().decode(Array<T>.self, from: result.data)
+                
+                return try JSONDecoder().decode(T.self, from: result.data)
             }
             .receive(on: DispatchQueue.main)
+//            .assertNoFailure()
             .replaceEmpty(with: nil)
             .replaceError(with: nil)
-            .sink { result in
-                completion(.success(result as! T))
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print("Error \(error)")
+                case .finished:
+                    print("Publisher is finished")
+                }
+            }) { result in
+                completion(.success(result!))
             }
     }
 }

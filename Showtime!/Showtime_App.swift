@@ -11,7 +11,7 @@ import SwiftUI
 struct Showtime_App: App {
     var body: some Scene {
         WindowGroup {
-            WatchlistView(viewModel: WatchlistViewModel(movieService: MovieService()))
+            WatchlistView()
         }
     }
 }
