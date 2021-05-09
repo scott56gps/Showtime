@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import Foundation
 
-class ImageLoader: ObservableObject {
+class ImageViewModel: ObservableObject {
     @Published var image: UIImage?
     private var cancellable: AnyCancellable?
     

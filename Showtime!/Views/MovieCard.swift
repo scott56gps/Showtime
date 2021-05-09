@@ -10,7 +10,7 @@ import Combine
 
 struct MovieCard: View {
     let movie: Movie
-    @ObservedObject var imageLoader = ImageLoader()
+    @StateObject var imageLoader = ImageViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,6 +22,7 @@ struct MovieCard: View {
                 if imageLoader.image != nil {
                     Image(uiImage: imageLoader.image!)
                         .resizable()
+                        .aspectRatio(contentMode: .fit)
                 } else {
                     Image(systemName: "square")
                 }
@@ -37,6 +38,6 @@ struct MovieCard: View {
 
 struct MovieCard_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCard(movie: Movie(id: 0, title: "Tommy Boy", posterUrlString: nil), imageLoader: ImageLoader())
+        MovieCard(movie: Movie(id: 0, title: "Tommy Boy", posterUrlString: nil), imageLoader: ImageViewModel())
     }
 }

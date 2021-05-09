@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		132224FF2632CD6800152667 /* URLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132224FE2632CD6800152667 /* URLSessionExtensions.swift */; };
-		132225042632D4AD00152667 /* FileDownloadClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132225032632D4AD00152667 /* FileDownloadClient.swift */; };
-		132225092632D90200152667 /* PosterImageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132225082632D90200152667 /* PosterImageClient.swift */; };
 		13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFAB26328EB300011317 /* Showtime_App.swift */; };
 		13C1CFAE26328EB300011317 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFAD26328EB300011317 /* WatchlistView.swift */; };
 		13C1CFB026328EC100011317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1CFAF26328EC100011317 /* Assets.xcassets */; };
@@ -19,11 +17,7 @@
 		13C1CFDA263294CA00011317 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFD9263294CA00011317 /* Movie.swift */; };
 		13C1CFE82632980100011317 /* WatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFE72632980100011317 /* WatchlistViewModel.swift */; };
 		13C1CFF52632A2C700011317 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFF42632A2C700011317 /* CheckboxToggleStyle.swift */; };
-		13C1CFFA2632A55900011317 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFF92632A55900011317 /* APIClient.swift */; };
-		13C1D0002632A8C000011317 /* WatchlistClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFFF2632A8C000011317 /* WatchlistClient.swift */; };
-		13C1D00C2632AA5100011317 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1D00B2632AA5100011317 /* MovieResponse.swift */; };
-		13F5CC392646B05B00C1808E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC382646B05B00C1808E /* ImageLoader.swift */; };
-		13F5CC3E2646B13D00C1808E /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC3D2646B13D00C1808E /* AsyncImage.swift */; };
+		13F5CC392646B05B00C1808E /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC382646B05B00C1808E /* ImageViewModel.swift */; };
 		13F5CC442646BC8900C1808E /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC432646BC8800C1808E /* MovieService.swift */; };
 		13F5CC492646D21100C1808E /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC482646D21100C1808E /* MovieCard.swift */; };
 		13F5CC4E2646DCC600C1808E /* MovieCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC4D2646DCC300C1808E /* MovieCarouselView.swift */; };
@@ -48,8 +42,6 @@
 
 /* Begin PBXFileReference section */
 		132224FE2632CD6800152667 /* URLSessionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtensions.swift; sourceTree = "<group>"; };
-		132225032632D4AD00152667 /* FileDownloadClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloadClient.swift; sourceTree = "<group>"; };
-		132225082632D90200152667 /* PosterImageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterImageClient.swift; sourceTree = "<group>"; };
 		13C1CFA826328EB300011317 /* Showtime!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Showtime!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C1CFAB26328EB300011317 /* Showtime_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showtime_App.swift; sourceTree = "<group>"; };
 		13C1CFAD26328EB300011317 /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
@@ -65,11 +57,7 @@
 		13C1CFD9263294CA00011317 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		13C1CFE72632980100011317 /* WatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewModel.swift; sourceTree = "<group>"; };
 		13C1CFF42632A2C700011317 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
-		13C1CFF92632A55900011317 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		13C1CFFF2632A8C000011317 /* WatchlistClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistClient.swift; sourceTree = "<group>"; };
-		13C1D00B2632AA5100011317 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
-		13F5CC382646B05B00C1808E /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		13F5CC3D2646B13D00C1808E /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		13F5CC382646B05B00C1808E /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		13F5CC432646BC8800C1808E /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		13F5CC482646D21100C1808E /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 		13F5CC4D2646DCC300C1808E /* MovieCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCarouselView.swift; sourceTree = "<group>"; };
@@ -193,23 +181,9 @@
 		13C1CFFE2632A82500011317 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				13C1D00A2632AA2500011317 /* Responses */,
-				13C1CFF92632A55900011317 /* APIClient.swift */,
-				13C1CFFF2632A8C000011317 /* WatchlistClient.swift */,
-				132225032632D4AD00152667 /* FileDownloadClient.swift */,
-				132225082632D90200152667 /* PosterImageClient.swift */,
-				13F5CC382646B05B00C1808E /* ImageLoader.swift */,
-				13F5CC3D2646B13D00C1808E /* AsyncImage.swift */,
+				13F5CC382646B05B00C1808E /* ImageViewModel.swift */,
 			);
 			path = Clients;
-			sourceTree = "<group>";
-		};
-		13C1D00A2632AA2500011317 /* Responses */ = {
-			isa = PBXGroup;
-			children = (
-				13C1D00B2632AA5100011317 /* MovieResponse.swift */,
-			);
-			path = Responses;
 			sourceTree = "<group>";
 		};
 		13F5CC422646BC7900C1808E /* Services */ = {
@@ -351,20 +325,14 @@
 			files = (
 				13C1CFAE26328EB300011317 /* WatchlistView.swift in Sources */,
 				13C1CFF52632A2C700011317 /* CheckboxToggleStyle.swift in Sources */,
-				13F5CC392646B05B00C1808E /* ImageLoader.swift in Sources */,
+				13F5CC392646B05B00C1808E /* ImageViewModel.swift in Sources */,
 				132224FF2632CD6800152667 /* URLSessionExtensions.swift in Sources */,
 				13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */,
 				13F5CC492646D21100C1808E /* MovieCard.swift in Sources */,
 				13C1CFE82632980100011317 /* WatchlistViewModel.swift in Sources */,
 				13F5CC442646BC8900C1808E /* MovieService.swift in Sources */,
 				13C1CFDA263294CA00011317 /* Movie.swift in Sources */,
-				132225092632D90200152667 /* PosterImageClient.swift in Sources */,
-				132225042632D4AD00152667 /* FileDownloadClient.swift in Sources */,
 				13F5CC4E2646DCC600C1808E /* MovieCarouselView.swift in Sources */,
-				13C1D00C2632AA5100011317 /* MovieResponse.swift in Sources */,
-				13C1CFFA2632A55900011317 /* APIClient.swift in Sources */,
-				13F5CC3E2646B13D00C1808E /* AsyncImage.swift in Sources */,
-				13C1D0002632A8C000011317 /* WatchlistClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
