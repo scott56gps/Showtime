@@ -38,6 +38,6 @@ struct MovieCard: View {
 
 struct MovieCard_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCard(movie: Movie(id: 0, title: "Tommy Boy", posterUrlString: nil), imageViewModel: ImageViewModel(image: UIImage(contentsOfFile: "Tommy Boy")))
+        MovieCard(movie: Movie(id: 0, title: "Tommy Boy", posterUrlString: nil), imageViewModel: ImageViewModel(image: UIImage(named: "Tommy Boy")))
     }
 }
