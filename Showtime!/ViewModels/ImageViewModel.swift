@@ -14,7 +14,11 @@ class ImageViewModel: ObservableObject {
     private let imageService: ImageService
     private var cancellable: AnyCancellable?
     
-    init() {
+    /**
+     Initializer that supplies an optional initial image for debugging purposes.
+     */
+    init(image: UIImage? = nil) {
+        self.image = image
         self.imageService = ImageService()
     }
     

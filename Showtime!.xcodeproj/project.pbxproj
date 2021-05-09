@@ -114,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				13F5CC422646BC7900C1808E /* Services */,
-				13C1CFFE2632A82500011317 /* Clients */,
 				13C1CFE0263296EE00011317 /* ViewModels */,
 				13C1CFDF263296E500011317 /* Models */,
 				13C1CFDE263296DD00011317 /* Views */,
@@ -176,16 +175,9 @@
 			isa = PBXGroup;
 			children = (
 				13C1CFE72632980100011317 /* WatchlistViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		13C1CFFE2632A82500011317 /* Clients */ = {
-			isa = PBXGroup;
-			children = (
 				13F5CC382646B05B00C1808E /* ImageViewModel.swift */,
 			);
-			path = Clients;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		13F5CC422646BC7900C1808E /* Services */ = {
