@@ -9,15 +9,18 @@ import SwiftUI
 
 struct MovieCarouselView: View {
     var movies: [Movie]
+    var colors: [Color] = [.blue, .green, .red, .orange, .black, .yellow]
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .top, spacing: 16) {
-                ForEach(movies) { movie in
-                    MovieCard(movie: movie)
-                }
+        HStack(alignment: .center, spacing: 16) {
+            ForEach(movies) { movie in
+                MovieCard(movie: movie)
+                    .frame(width: UIScreen.main.bounds.width - 32, alignment: .center)
+                    .cornerRadius(10)
             }
         }
+        .padding()
+        .modifier(HStackSnapCarousel(items: movies.count, itemWidth: UIScreen.main.bounds.width - 32, itemSpacing: 16))
     }
 }
 
