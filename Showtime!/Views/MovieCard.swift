@@ -15,21 +15,20 @@ struct MovieCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(movie.title)
-            ZStack {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.3))
-                
-                if imageViewModel.image != nil {
-                    Image(uiImage: imageViewModel.image!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } else {
-                    Image(systemName: "square")
-                }
+                .frame(maxWidth: .infinity, alignment: .center)
+            
+//            Image("Tommy Boy") // For testing
+//                .resizable()
+//                .aspectRatio(contentMode: .fit)
+            if imageViewModel.image != nil {
+                Image(uiImage: imageViewModel.image!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else {
+                Image(systemName: "square")
             }
-            .cornerRadius(8)
-            .shadow(radius: 4)
         }
+        .padding()
         .onAppear {
             imageViewModel.load(with: movie.posterUrl)
         }
