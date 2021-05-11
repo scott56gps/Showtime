@@ -24,6 +24,10 @@ struct MovieService {
     }
     
     private func fetchURLToType<T: Decodable>(url: URL, parameters: [String : String]? = nil, completion: @escaping (Result<T, MovieRetrievalError>) -> ()) -> AnyCancellable? {
+        guard !url.absoluteString.isEmpty else {
+            completion(.failure(.invalidEndpoint))
+            return nil
+        }
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             completion(.failure(.invalidEndpoint))
             return nil
@@ -51,17 +55,18 @@ struct MovieService {
                 return try JSONDecoder().decode(T.self, from: result.data)
             }
             .receive(on: DispatchQueue.main)
-            .replaceEmpty(with: nil)
-            .replaceError(with: nil)
+//            .replaceEmpty(with: nil)
+//            .replaceError(with: nil)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
                     print("Error \(error)")
+                    completion(.failure(.apiError))
                 case .finished:
                     print("Publisher is finished")
                 }
             }) { result in
-                completion(.success(result!))
+                completion(.success(result))
             }
     }
 }
@@ -77,7 +82,7 @@ enum MovieListEndpoint: String {
     }
 }
 
-enum MovieRetrievalError: Error {
+enum MovieRetrievalError: String, Error {
     case apiError
     case invalidEndpoint
     case invalidResponse

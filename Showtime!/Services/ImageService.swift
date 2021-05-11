@@ -29,12 +29,12 @@ struct ImageService {
         
         return URLSession.shared.dataTaskPublisher(for: requestUrl)
             .map { UIImage(data: $0.data) }
-            .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
                     print("Error \(error)")
+                    completion(.failure(.apiError))
                 case .finished:
                     print("Publisher is finished")
                 }

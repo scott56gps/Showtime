@@ -18,6 +18,7 @@
 		13C1CFE82632980100011317 /* WatchlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFE72632980100011317 /* WatchlistViewModel.swift */; };
 		13C1CFF52632A2C700011317 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFF42632A2C700011317 /* CheckboxToggleStyle.swift */; };
 		13D014CA2647DE4000743F3C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D014C92647DE4000743F3C /* ImageService.swift */; };
+		13EDA7E32647EE2D00C1407C /* ImageServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EDA7E22647EE2D00C1407C /* ImageServiceTest.swift */; };
 		13F5CC392646B05B00C1808E /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC382646B05B00C1808E /* ImageViewModel.swift */; };
 		13F5CC442646BC8900C1808E /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC432646BC8800C1808E /* MovieService.swift */; };
 		13F5CC492646D21100C1808E /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5CC482646D21100C1808E /* MovieCard.swift */; };
@@ -59,6 +60,7 @@
 		13C1CFE72632980100011317 /* WatchlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewModel.swift; sourceTree = "<group>"; };
 		13C1CFF42632A2C700011317 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		13D014C92647DE4000743F3C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		13EDA7E22647EE2D00C1407C /* ImageServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTest.swift; sourceTree = "<group>"; };
 		13F5CC382646B05B00C1808E /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		13F5CC432646BC8800C1808E /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		13F5CC482646D21100C1808E /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				13C1CFBD26328EC300011317 /* Showtime_Tests.swift */,
 				13C1CFBF26328EC300011317 /* Info.plist */,
+				13EDA7E22647EE2D00C1407C /* ImageServiceTest.swift */,
 			);
 			path = "Showtime!Tests";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13C1CFBE26328EC300011317 /* Showtime_Tests.swift in Sources */,
+				13EDA7E32647EE2D00C1407C /* ImageServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
