@@ -11,8 +11,8 @@ import Combine
 
 struct MovieService {
     private let apiKey = "PUT API KEY HERE"
-//    private let baseAPIURLString = "http://localhost:8000/" // Uncomment for Simulator Dev
-    private let baseAPIURLString = "http://e50c0cacd1fb.ngrok.io/" // Uncomment for On-Device Dev
+    private let baseAPIURLString = "http://localhost:8000/" // Uncomment for Simulator Dev
+//    private let baseAPIURLString = "http://fa09181f0892.ngrok.io/" // Uncomment for On-Device Dev
     
     func getMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<[Movie], MovieRetrievalError>) -> ()) -> AnyCancellable? {
         guard let url = URL(string: "\(baseAPIURLString)\(endpoint.rawValue)") else {
@@ -55,8 +55,6 @@ struct MovieService {
                 return try JSONDecoder().decode(T.self, from: result.data)
             }
             .receive(on: DispatchQueue.main)
-//            .replaceEmpty(with: nil)
-//            .replaceError(with: nil)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
