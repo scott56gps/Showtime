@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct WatchlistView: View {
-    @StateObject var viewModel: WatchlistViewModel = WatchlistViewModel()
+    @ObservedObject var viewModel: WatchlistViewModel = WatchlistViewModel()
     var body: some View {
         Group {
-            if viewModel.movies != nil {
-                MovieCarouselView(movies: viewModel.movies!)
+            if !viewModel.movies.isEmpty {
+                MovieCarouselView(movies: viewModel.movies)
             } else {
                 Text("Loading...")
             }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MovieCarouselView: View {
     var movies: [Movie]
-    var colors: [Color] = [.blue, .green, .red, .orange, .black, .yellow]
     
     var body: some View {
         HStack(alignment: .center, spacing: 16) {

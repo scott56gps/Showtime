@@ -54,7 +54,7 @@ class MovieSearchViewModel: ObservableObject {
                 guard let self = self, self.searchText == text else { return }
                 
                 self.isLoading = false
-                self.movies = result.movies
+                self.movies = result.results
             }
             .store(in: &subscriptionTokens)
     }

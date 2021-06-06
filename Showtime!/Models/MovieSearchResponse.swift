@@ -7,5 +7,5 @@
 
 struct MovieSearchResponse: Codable {
     let page: Int
-    let movies: [Movie]
+    let results: [Movie]
 }

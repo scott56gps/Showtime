@@ -15,15 +15,6 @@ struct MovieService {
     private let baseAPIURLString = "http://95a11b3f45fd.ngrok.io" // Uncomment for On-Device Dev
     private let tmdbBaseUrl = "https://api.themoviedb.org/3"
     
-    func getMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<[Movie], MovieRetrievalError>) -> ()) -> AnyCancellable? {
-        guard let url = URL(string: "\(baseAPIURLString)\(endpoint.rawValue)") else {
-            completion(.failure(.invalidEndpoint))
-            return nil
-        }
-        
-        return fetchURLToType(url: url, completion: completion)
-    }
-    
     func getWatchlist() -> AnyPublisher<WatchlistResponse, Error> {
         guard let url = URL(string: "\(baseAPIURLString)/watchlist") else {
             return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
@@ -89,51 +80,6 @@ struct MovieService {
         }
         
         return requestUrl
-    }
-    
-    private func fetchURLToType<T: Decodable>(url: URL, parameters: [String : String]? = nil, completion: @escaping (Result<T, MovieRetrievalError>) -> ()) -> AnyCancellable? {
-        guard !url.absoluteString.isEmpty else {
-            completion(.failure(.invalidEndpoint))
-            return nil
-        }
-        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-            completion(.failure(.invalidEndpoint))
-            return nil
-        }
-        
-        var queryItems: [URLQueryItem] = []
-//        queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
-        if let parameters = parameters {
-            queryItems.append(contentsOf: parameters.map { URLQueryItem(name: $0.key, value: $0.value) })
-        }
-        
-        urlComponents.queryItems = queryItems
-        guard let requestUrl = urlComponents.url else {
-            completion(.failure(.invalidEndpoint))
-            return nil
-        }
-        
-        return URLSession.shared.dataTaskPublisher(for: requestUrl)
-            .tryMap { result -> T in
-                guard let response = result.response as? HTTPURLResponse, response.statusCode == 200 else {
-                    completion(.failure(.invalidResponse))
-                    throw MovieRetrievalError.invalidResponse
-                }
-                
-                return try JSONDecoder().decode(T.self, from: result.data)
-            }
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { result in
-                switch result {
-                case .failure(let error):
-                    print("Error \(error)")
-                    completion(.failure(.apiError))
-                case .finished:
-                    print("Publisher is finished")
-                }
-            }) { result in
-                completion(.success(result))
-            }
     }
 }
 

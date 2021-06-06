@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 class WatchlistViewModel: ObservableObject {
-    @Published var movies: [Movie]?
+    @Published var movies: [Movie] = []
     @Published var isLoading = false
     @Published var error: Error?
     private let movieService: MovieService
@@ -22,22 +22,11 @@ class WatchlistViewModel: ObservableObject {
     init() {
         print("In View Model Initializer")
         self.movieService = MovieService()
-//        loadWatchlist()
     }
     
     func loadWatchlist() {
-//        cancellationToken = movieService.getMovies(from: .watchlist) { [weak self] (result) in
-//            guard let self = self else { return }
-//
-//            switch result {
-//            case .success(let response):
-//                self.movies = response
-//            case .failure(let error):
-//                // TODO: Handle Error
-//                print(error)
-//            }
-//        }
-        self.movieService.getWatchlist()
+        isLoading = true
+        movieService.getWatchlist()
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
