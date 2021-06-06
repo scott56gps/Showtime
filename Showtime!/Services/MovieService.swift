@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct MovieService {
-    private let apiKey = "PUT API KEY HERE"
+    private let tmdbApiKey = ""
 //    private let baseAPIURLString = "http://localhost:8000/" // Uncomment for Simulator Dev
     private let baseAPIURLString = "http://95a11b3f45fd.ngrok.io" // Uncomment for On-Device Dev
     private let tmdbBaseUrl = "https://api.themoviedb.org/3"
@@ -38,13 +38,13 @@ struct MovieService {
             return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
         }
         
-        if apiKey.isEmpty {
+        if tmdbApiKey.isEmpty {
             print("API Key is empty")
             return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
         }
         
         return fetchURLAndDecode(url: url, parameters: [
-            "api_key" : apiKey,
+            "api_key" : tmdbApiKey,
             "language" : "en-us",
             "include_adult" : "false",
             "region" : "US",
