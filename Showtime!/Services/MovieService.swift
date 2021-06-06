@@ -12,8 +12,8 @@ import Combine
 struct MovieService {
     private let apiKey = "PUT API KEY HERE"
 //    private let baseAPIURLString = "http://localhost:8000/" // Uncomment for Simulator Dev
-    private let baseAPIURLString = "http://95a11b3f45fd.ngrok.io/" // Uncomment for On-Device Dev
-    private let tmdbBaseUrl = "https://api.themoviedb.org/3/"
+    private let baseAPIURLString = "http://95a11b3f45fd.ngrok.io" // Uncomment for On-Device Dev
+    private let tmdbBaseUrl = "https://api.themoviedb.org/3"
     
     func getMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<[Movie], MovieRetrievalError>) -> ()) -> AnyCancellable? {
         guard let url = URL(string: "\(baseAPIURLString)\(endpoint.rawValue)") else {
@@ -24,9 +24,17 @@ struct MovieService {
         return fetchURLToType(url: url, completion: completion)
     }
     
+    func getWatchlist() -> AnyPublisher<WatchlistResponse, Error> {
+        guard let url = URL(string: "\(baseAPIURLString)/watchlist") else {
+            return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
+        }
+        
+        return fetchURLAndDecode(url: url)
+    }
+    
     func searchMovies(query: String) -> AnyPublisher<MovieSearchResponse, Error> {
         print("In Search Movies")
-        guard let url = URL(string: "\(tmdbBaseUrl)search/movie") else {
+        guard let url = URL(string: "\(tmdbBaseUrl)/search/movie") else {
             return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
         }
         

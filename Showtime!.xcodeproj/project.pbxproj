@@ -14,6 +14,7 @@
 		13AD31A0266CC62A00C6CE64 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD319F266CC62A00C6CE64 /* SearchBar.swift */; };
 		13AD31A2266CC6A600C6CE64 /* MovieSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD31A1266CC6A600C6CE64 /* MovieSearchResponse.swift */; };
 		13AD31A4266CC7D600C6CE64 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD31A3266CC7D500C6CE64 /* Stack.swift */; };
+		13AD31A7266CCCB800C6CE64 /* WatchlistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AD31A6266CCCB800C6CE64 /* WatchlistResponse.swift */; };
 		13B4A9A5264A68F700CE9105 /* HStackSnapCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4A9A4264A68F600CE9105 /* HStackSnapCarousel.swift */; };
 		13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFAB26328EB300011317 /* Showtime_App.swift */; };
 		13C1CFAE26328EB300011317 /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1CFAD26328EB300011317 /* WatchlistView.swift */; };
@@ -57,6 +58,7 @@
 		13AD319F266CC62A00C6CE64 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		13AD31A1266CC6A600C6CE64 /* MovieSearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieSearchResponse.swift; sourceTree = "<group>"; };
 		13AD31A3266CC7D500C6CE64 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		13AD31A6266CCCB800C6CE64 /* WatchlistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistResponse.swift; sourceTree = "<group>"; };
 		13B4A9A4264A68F600CE9105 /* HStackSnapCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackSnapCarousel.swift; sourceTree = "<group>"; };
 		13C1CFA826328EB300011317 /* Showtime!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Showtime!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C1CFAB26328EB300011317 /* Showtime_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showtime_App.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				13C1CFD9263294CA00011317 /* Movie.swift */,
 				13AD31A1266CC6A600C6CE64 /* MovieSearchResponse.swift */,
+				13AD31A6266CCCB800C6CE64 /* WatchlistResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				13AD3199266CC55900C6CE64 /* MovieSearchView.swift in Sources */,
 				13D014CA2647DE4000743F3C /* ImageService.swift in Sources */,
 				13AD31A4266CC7D600C6CE64 /* Stack.swift in Sources */,
+				13AD31A7266CCCB800C6CE64 /* WatchlistResponse.swift in Sources */,
 				13C1CFAC26328EB300011317 /* Showtime_App.swift in Sources */,
 				13F5CC492646D21100C1808E /* MovieCard.swift in Sources */,
 				13C1CFE82632980100011317 /* WatchlistViewModel.swift in Sources */,
