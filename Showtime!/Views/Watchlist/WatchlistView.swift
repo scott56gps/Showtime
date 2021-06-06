@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct WatchlistView: View {
-    @ObservedObject var viewModel: WatchlistViewModel = WatchlistViewModel()
+    // TODO: Convert MovieService invocation to a singleton that I pass through the initializer
+    @ObservedObject var watchlistViewModel: WatchlistViewModel = WatchlistViewModel()
+    @ObservedObject var searchViewModel = MovieSearchViewModel(movieService: MovieService())
+    
     var body: some View {
-        Group {
-            if !viewModel.movies.isEmpty {
-                MovieCarouselView(movies: viewModel.movies)
+        VStack {
+            if !watchlistViewModel.movies.isEmpty {
+                MovieCarouselView(movies: watchlistViewModel.movies)
             } else {
                 Text("Loading...")
             }
+            SearchBar(placeholder: "Add Movie", text: $searchViewModel.searchText)
         }
         .onAppear(perform: {
-            viewModel.loadWatchlist()
+            watchlistViewModel.loadWatchlist()
         })
     }
 }
