@@ -26,15 +26,17 @@ class ImageViewModel: ObservableObject {
         cancel()
     }
     
-    func load(with url: URL) {
-        cancellable = imageService.fetchImage(from: url) { [weak self] (result) in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let image):
-                self.image = image
-            case .failure(let failure):
-                print(failure)
+    func load(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            cancellable = imageService.fetchImage(from: url) { [weak self] (result) in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let image):
+                    self.image = image
+                case .failure(let failure):
+                    print(failure)
+                }
             }
         }
     }

@@ -10,36 +10,31 @@ import Foundation
 struct Movie: Codable, Identifiable {
     var id: Int
     var title: String
-    var posterUrlString: String?
-    var posterUrl: URL {
-        return URL(string: posterUrlString ?? "")!
-    }
+    var posterUrl: String?
     
-    enum CodingKeys: String, CodingKey {
-        case posterUrlString = "poster_url"
+    enum MovieCodingKeys: String, CodingKey {
+        case posterUrl = "poster_url"
         case id
         case title
-        case posterUrl = "poster_url_object"
     }
     
-    init(id: Int, title: String, posterUrlString: String?) {
+    init(id: Int, title: String, posterPath: String?, posterUrl: String?) {
         self.id = id
         self.title = title
-        self.posterUrlString = posterUrlString
+        self.posterUrl = posterUrl
     }
     
     init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(Int.self, forKey: .id)
-        title = try values.decode(String.self, forKey: .title)
-        posterUrlString = try values.decode(String?.self, forKey: .posterUrlString)
+        let values = try decoder.container(keyedBy: MovieCodingKeys.self)
+        self.id = try values.decode(Int.self, forKey: .id)
+        self.title = try values.decode(String.self, forKey: .title)
+        self.posterUrl = try values.decode(String.self, forKey: .posterUrl)
     }
     
     func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.container(keyedBy: MovieCodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
-        try container.encode(posterUrlString, forKey: .posterUrlString)
         try container.encode(posterUrl, forKey: .posterUrl)
     }
 }

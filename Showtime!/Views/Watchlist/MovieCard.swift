@@ -30,13 +30,15 @@ struct MovieCard: View {
         }
         .padding()
         .onAppear {
-            imageViewModel.load(with: movie.posterUrl)
+            if let posterPath = movie.posterUrl {
+                imageViewModel.load(posterPath)
+            }
         }
     }
 }
 
 struct MovieCard_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCard(movie: Movie(id: 0, title: "Tommy Boy", posterUrlString: nil), imageViewModel: ImageViewModel(image: UIImage(named: "Tommy Boy")))
+        MovieCard(movie: Movie(id: 0, title: "Tommy Boy", posterPath: nil, posterUrl: nil), imageViewModel: ImageViewModel(image: UIImage(named: "Tommy Boy")))
     }
 }

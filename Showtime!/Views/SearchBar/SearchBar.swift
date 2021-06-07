@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBar: UIViewRepresentable {
     let placeholder: String
     @Binding var text: String
+    @Binding var isSelected: Bool
     
     func makeUIView(context: Context) -> UISearchBar {
         let searchBar = UISearchBar()
@@ -21,7 +22,7 @@ struct SearchBar: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(text: $text)
+        return Coordinator(text: $text, isSelected: $isSelected)
     }
     
     func updateUIView(_ uiView: UISearchBar, context: Context) {
@@ -30,9 +31,16 @@ struct SearchBar: UIViewRepresentable {
     
     class Coordinator: NSObject, UISearchBarDelegate {
         @Binding var text: String
+        @Binding var isSelected: Bool
         
-        init(text: Binding<String>) {
+        init(text: Binding<String>, isSelected: Binding<Bool>) {
             _text = text
+            _isSelected = isSelected
+        }
+        
+        func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+            isSelected = true
+            return true
         }
         
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

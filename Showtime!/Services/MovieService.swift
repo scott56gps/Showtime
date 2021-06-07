@@ -12,7 +12,7 @@ import Combine
 struct MovieService {
     private let tmdbApiKey = ""
 //    private let baseAPIURLString = "http://localhost:8000/" // Uncomment for Simulator Dev
-    private let baseAPIURLString = "http://95a11b3f45fd.ngrok.io" // Uncomment for On-Device Dev
+    private let baseAPIURLString = "http://7022a209f3a6.ngrok.io" // Uncomment for On-Device Dev
     private let tmdbBaseUrl = "https://api.themoviedb.org/3"
     
     func getWatchlist() -> AnyPublisher<WatchlistResponse, Error> {

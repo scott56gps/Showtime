@@ -11,7 +11,7 @@ import Combine
 
 class MovieSearchViewModel: ObservableObject {
     @Published var searchText = ""
-    @Published var movies: [Movie] = []
+    @Published var movieResults: [MovieResult] = []
     @Published var isLoading = false
     @Published var error: Error?
     
@@ -27,7 +27,7 @@ class MovieSearchViewModel: ObservableObject {
         guard subscriptionToken == nil else { return }
         self.subscriptionToken = self.$searchText
             .map { [weak self] text in
-                self?.movies.removeAll()
+                self?.movieResults.removeAll()
                 self?.error = nil
                 return text
             }
@@ -36,7 +36,7 @@ class MovieSearchViewModel: ObservableObject {
     }
     
     func search(text: String) {
-        self.movies.removeAll()
+        self.movieResults.removeAll()
         self.error = nil
         
         guard !text.isEmpty else { return }
@@ -54,7 +54,7 @@ class MovieSearchViewModel: ObservableObject {
                 guard let self = self, self.searchText == text else { return }
                 
                 self.isLoading = false
-                self.movies = result.results
+                self.movieResults = result.results
             }
             .store(in: &subscriptionTokens)
     }
