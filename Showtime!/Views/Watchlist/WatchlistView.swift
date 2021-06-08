@@ -18,12 +18,7 @@ struct WatchlistView: View {
         VStack {
             if searchBarIsSelected {
                 ScrollViewReader { scrollProxy in
-                    MovieSearchResultsPresenter(results: searchViewModel.movieResults)
-                        .onReceive(searchViewModel.$movieResults) { value in
-                            if let targetMovie = value.first {
-                                scrollProxy.scrollTo(targetMovie.id)
-                            }
-                        }
+                    MovieSearchResultsPresenter(viewModel: searchViewModel)
                 }
             } else if !watchlistViewModel.movies.isEmpty {
                 MovieCarouselView(movies: watchlistViewModel.movies)

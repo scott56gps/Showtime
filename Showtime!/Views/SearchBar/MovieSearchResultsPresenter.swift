@@ -8,19 +8,26 @@
 import SwiftUI
 
 struct MovieSearchResultsPresenter: View {
-    var results: [MovieResult]
+    @ObservedObject var viewModel: MovieSearchViewModel
     
     var body: some View {
-        if !results.isEmpty {
-            ReversedScrollView(.vertical) {
-                LazyVStack(alignment: .leading, spacing: 12.0) {
-                    ForEach(results.reversed()) { movie in
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(movie.title)
-                                .id(movie.id)
-                            Divider()
+        if !viewModel.movieResults.isEmpty {
+            ScrollViewReader { reader in
+                ReversedScrollView(.vertical) {
+                    LazyVStack(alignment: .leading, spacing: 12.0) {
+                        ForEach(viewModel.movieResults.reversed()) { movie in
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(movie.title)
+                                    .id(movie.id)
+                                Divider()
+                            }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
+                    }
+                    .onReceive(viewModel.$movieResults) { value in
+                        if let targetMovie = value.first {
+                            reader.scrollTo(targetMovie.id)
+                        }
                     }
                 }
             }
@@ -33,7 +40,7 @@ struct MovieSearchResultsPresenter: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollViewReader { scrollProxy in
-            MovieSearchResultsPresenter(results: [MovieResult(id: 1, title: "Tommy Boy", posterPath: nil)])
+            MovieSearchResultsPresenter(viewModel: MovieSearchViewModel(movieService: MovieService()))
         }
     }
 }

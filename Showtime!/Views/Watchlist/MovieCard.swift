@@ -25,7 +25,7 @@ struct MovieCard: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             } else {
-                Image(systemName: "square")
+                Spacer()
             }
         }
         .padding()
