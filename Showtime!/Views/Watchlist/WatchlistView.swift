@@ -18,13 +18,13 @@ struct WatchlistView: View {
     var body: some View {
         VStack {
             if searchBarIsSelected {
-                ScrollViewReader { scrollProxy in
-                    MovieSearchResultsPresenter(viewModel: searchViewModel, isPresented: $searchBarIsSelected)
-                }
+                MovieSearchResultsPresenter(viewModel: searchViewModel, isPresented: $searchBarIsSelected)
             } else if !watchlistViewModel.movies.isEmpty {
                 MovieCarouselView(movies: watchlistViewModel.movies)
             } else {
+                Spacer()
                 Text("Loading...")
+                Spacer()
             }
             SearchBar(placeholder: "Add Movie", text: $searchViewModel.searchText, isSelected: $searchBarIsSelected)
         }
