@@ -18,10 +18,16 @@ struct Movie: Codable, Identifiable {
         case title
     }
     
-    init(id: Int, title: String, posterPath: String?, posterUrl: String?) {
+    init(id: Int, title: String, posterUrl: String?) {
         self.id = id
         self.title = title
         self.posterUrl = posterUrl
+    }
+    
+    init(from result: MovieResult) {
+        self.id = result.id
+        self.title = result.title
+        self.posterUrl = result.posterPath
     }
     
     init(from decoder: Decoder) throws {

@@ -25,6 +25,6 @@ struct MovieCarouselView: View {
 
 struct MovieCarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCarouselView(movies: [Movie(id: 0, title: "Tommy Boy", posterPath: nil, posterUrl: nil)])
+        MovieCarouselView(movies: [Movie(id: 0, title: "Tommy Boy", posterUrl: nil)])
     }
 }

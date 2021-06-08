@@ -9,19 +9,27 @@ import SwiftUI
 
 struct MovieSearchResultsPresenter: View {
     @ObservedObject var viewModel: MovieSearchViewModel
+    @Binding var isPresented: Bool
     
     var body: some View {
         if !viewModel.movieResults.isEmpty {
             ScrollViewReader { reader in
                 ReversedScrollView(.vertical) {
                     LazyVStack(alignment: .leading, spacing: 12.0) {
-                        ForEach(viewModel.movieResults.reversed()) { movie in
+                        ForEach(viewModel.movieResults.reversed()) { movieResult in
                             VStack(alignment: .leading, spacing: 6) {
-                                Text(movie.title)
-                                    .id(movie.id)
+                                Text(movieResult.title)
+                                    .id(movieResult.id)
                                 Divider()
                             }
                             .padding(.horizontal)
+                            .onTapGesture {
+                                isPresented = false
+                                viewModel.searchText = ""
+                                
+                                // Hide the keyboard, if it is presented
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            }
                         }
                     }
                     .onReceive(viewModel.$movieResults) { value in
@@ -38,9 +46,10 @@ struct MovieSearchResultsPresenter: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    @State static var isPresented = true
     static var previews: some View {
         ScrollViewReader { scrollProxy in
-            MovieSearchResultsPresenter(viewModel: MovieSearchViewModel(movieService: MovieService()))
+            MovieSearchResultsPresenter(viewModel: MovieSearchViewModel(movieService: MovieService()), isPresented: $isPresented)
         }
     }
 }

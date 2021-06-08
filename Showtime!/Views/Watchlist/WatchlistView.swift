@@ -13,12 +13,13 @@ struct WatchlistView: View {
     @ObservedObject var searchViewModel = MovieSearchViewModel(movieService: MovieService())
     
     @State var searchBarIsSelected: Bool = false
+    @State var foundMovie: Movie?
     
     var body: some View {
         VStack {
             if searchBarIsSelected {
                 ScrollViewReader { scrollProxy in
-                    MovieSearchResultsPresenter(viewModel: searchViewModel)
+                    MovieSearchResultsPresenter(viewModel: searchViewModel, isPresented: $searchBarIsSelected)
                 }
             } else if !watchlistViewModel.movies.isEmpty {
                 MovieCarouselView(movies: watchlistViewModel.movies)
