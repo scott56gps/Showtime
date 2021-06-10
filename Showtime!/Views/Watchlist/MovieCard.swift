@@ -15,11 +15,9 @@ struct MovieCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(movie.title)
+                .padding()
                 .frame(maxWidth: .infinity, alignment: .center)
-            
-//            Image("Tommy Boy") // For testing
-//                .resizable()
-//                .aspectRatio(contentMode: .fit)
+
             if imageViewModel.image != nil {
                 Image(uiImage: imageViewModel.image!)
                     .resizable()

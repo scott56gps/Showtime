@@ -27,7 +27,9 @@ struct Movie: Codable, Identifiable {
     init(from result: MovieResult) {
         self.id = result.id
         self.title = result.title
-        self.posterUrl = result.posterPath
+        if let posterPath = result.posterPath {
+            self.posterUrl = "http://image.tmdb.org/t/p/original\(posterPath)"
+        }
     }
     
     init(from decoder: Decoder) throws {

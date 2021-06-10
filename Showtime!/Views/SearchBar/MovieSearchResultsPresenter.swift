@@ -17,13 +17,17 @@ struct MovieSearchResultsPresenter: View {
                 ReversedScrollView(.vertical) {
                     LazyVStack(alignment: .leading, spacing: 12.0) {
                         ForEach(viewModel.movieResults.reversed()) { movieResult in
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text(movieResult.title)
-                                    .id(movieResult.id)
-                                Divider()
+                            HStack() {
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(movieResult.title)
+                                        .id(movieResult.id)
+                                    Divider()
+                                }
+                                .padding(.horizontal)
+                                .contentShape(Rectangle())
                             }
-                            .padding(.horizontal)
                             .onTapGesture {
+                                viewModel.foundMovie = Movie(from: movieResult)
                                 isPresented = false
                                 viewModel.searchText = ""
                                 

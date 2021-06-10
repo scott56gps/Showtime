@@ -14,6 +14,7 @@ class MovieSearchViewModel: ObservableObject {
     @Published var movieResults: [MovieResult] = []
     @Published var isLoading = false
     @Published var error: Error?
+    @Published var foundMovie: Movie?
     
     private var subscriptionToken: AnyCancellable?
     private var subscriptionTokens = Set<AnyCancellable>()
