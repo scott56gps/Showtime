@@ -53,7 +53,7 @@ struct ContentView_Previews: PreviewProvider {
     @State static var isPresented = true
     static var previews: some View {
         ScrollViewReader { scrollProxy in
-            MovieSearchResultsPresenter(viewModel: MovieSearchViewModel(movieService: MovieService()), isPresented: $isPresented)
+            MovieSearchResultsPresenter(viewModel: MovieSearchViewModel(movieService: SearchService()), isPresented: $isPresented)
         }
     }
 }

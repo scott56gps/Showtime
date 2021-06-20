@@ -18,9 +18,9 @@ class MovieSearchViewModel: ObservableObject {
     
     private var subscriptionToken: AnyCancellable?
     private var subscriptionTokens = Set<AnyCancellable>()
-    let movieService: MovieService
+    let movieService: SearchService
     
-    init(movieService: MovieService) {
+    init(movieService: SearchService) {
         self.movieService = movieService
     }
     
