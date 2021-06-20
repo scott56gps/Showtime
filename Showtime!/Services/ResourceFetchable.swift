@@ -9,12 +9,11 @@ import Combine
 import Foundation
 
 protocol ResourceFetchable {
-    func fetchURLAndDecode<T: Decodable>(url: URL, parameters: [String : String]?) -> AnyPublisher<T, Error>
-    func constructURLWithComponents(url: URL, parameters: [String : String]?) -> URL?
+    func fetchResource(url: URL, parameters: [String : String]?) -> AnyPublisher<Data, Error>
 }
 
 extension ResourceFetchable {
-    func fetchURLAndDecode<T: Decodable>(url: URL, parameters: [String : String]? = nil) -> AnyPublisher<T, Error>  {
+    func fetchResource(url: URL, parameters: [String : String]? = nil) -> AnyPublisher<Data, Error>  {
         guard let requestUrl = constructURLWithComponents(url: url, parameters: parameters) else {
             return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
         }
@@ -27,12 +26,12 @@ extension ResourceFetchable {
                 
                 return result.data
             }
-            .decode(type: T.self, decoder: JSONDecoder())
+//            .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
-    func constructURLWithComponents(url: URL, parameters: [String : String]?) -> URL? {
+    private func constructURLWithComponents(url: URL, parameters: [String : String]?) -> URL? {
         guard !url.absoluteString.isEmpty else {
             return nil
         }

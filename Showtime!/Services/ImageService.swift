@@ -5,41 +5,18 @@
 //  Created by Scott Nicholes on 5/9/21.
 //
 
-import Foundation
 import SwiftUI
 import Combine
 
-struct ImageService {
-    func fetchImage(from url: URL, parameters: [String : String]? = nil, completion: @escaping (Result<UIImage, MovieRetrievalError>) -> ()) -> AnyCancellable? {
-        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-            completion(.failure(.invalidEndpoint))
-            return nil
-        }
-        
-        var queryItems: [URLQueryItem] = []
-        if let parameters = parameters {
-            queryItems.append(contentsOf: parameters.map { URLQueryItem(name: $0.key, value: $0.value) })
-        }
-        
-        urlComponents.queryItems = queryItems
-        guard let requestUrl = urlComponents.url else {
-            completion(.failure(.invalidEndpoint))
-            return nil
-        }
-        
-        return URLSession.shared.dataTaskPublisher(for: requestUrl)
-            .map { UIImage(data: $0.data) }
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { result in
-                switch result {
-                case .failure(let error):
-                    print("Error \(error)")
-                    completion(.failure(.apiError))
-                case .finished:
-                    print("Publisher is finished")
+struct ImageService: ResourceFetchable {
+    func fetchImage(from url: URL) -> AnyPublisher<UIImage, Error> {
+        return fetchResource(url: url)
+            .tryMap { data in
+                guard let image = UIImage(data: data) else {
+                    throw MovieRetrievalError.invalidResponse
                 }
-            }) { result in
-                completion(.success(result!))
+                return image
             }
+            .eraseToAnyPublisher()
     }
 }

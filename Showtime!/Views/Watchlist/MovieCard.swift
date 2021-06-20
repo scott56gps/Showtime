@@ -29,7 +29,7 @@ struct MovieCard: View {
         .padding()
         .onAppear {
             if let posterPath = movie.posterUrl {
-                imageViewModel.load(posterPath)
+                imageViewModel.loadImage(posterPath)
             }
         }
     }

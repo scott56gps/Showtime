@@ -7,12 +7,12 @@
 
 import SwiftUI
 import Combine
-import Foundation
 
 class ImageViewModel: ObservableObject {
     @Published var image: UIImage?
+    @Published var error: Error?
     private let imageService: ImageService
-    private var cancellable: AnyCancellable?
+    private var subscriptionTokens = Set<AnyCancellable>()
     
     /**
      Initializer that supplies an optional initial image for debugging purposes.
@@ -22,26 +22,23 @@ class ImageViewModel: ObservableObject {
         self.imageService = ImageService()
     }
     
-    deinit {
-        cancel()
-    }
-    
-    func load(_ urlString: String) {
+    func loadImage(_ urlString: String) {
         if let url = URL(string: urlString) {
-            cancellable = imageService.fetchImage(from: url) { [weak self] (result) in
-                guard let self = self else { return }
-                
-                switch result {
-                case .success(let image):
-                    self.image = image
-                case .failure(let failure):
-                    print(failure)
+            imageService.fetchImage(from: url)
+                .sink(receiveCompletion: { result in
+                    switch result {
+                    case .failure(let error):
+                        print("Error \(error)")
+                        self.error = error
+                    case .finished:
+                        print("Publisher is finished")
+                    }
+                }) { [weak self] (result) in
+                    guard let self = self else { return }
+                    
+                    self.image = result
                 }
-            }
+                .store(in: &subscriptionTokens)
         }
-    }
-    
-    func cancel() {
-        cancellable?.cancel()
     }
 }

@@ -23,12 +23,14 @@ struct SearchService: ResourceFetchable {
             return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
         }
         
-        return fetchURLAndDecode(url: url, parameters: [
+        return fetchResource(url: url, parameters: [
             "api_key" : tmdbApiKey,
             "language" : "en-us",
             "include_adult" : "false",
             "region" : "US",
             "query" : query
         ])
+        .decode(type: MovieSearchResponse.self, decoder: JSONDecoder())
+        .eraseToAnyPublisher()
     }
 }

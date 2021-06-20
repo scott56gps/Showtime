@@ -18,7 +18,9 @@ struct WatchlistService: ResourceFetchable {
             return Fail(error: MovieRetrievalError.invalidEndpoint).eraseToAnyPublisher()
         }
         
-        return fetchURLAndDecode(url: url)
+        return fetchResource(url: url)
+            .decode(type: WatchlistResponse.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
 }
 
