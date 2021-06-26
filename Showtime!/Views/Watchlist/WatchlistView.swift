@@ -21,12 +21,6 @@ struct WatchlistView: View {
                 MovieSearchResultsPresenter(viewModel: searchViewModel, isPresented: $searchBarIsSelected)
             } else if !watchlistViewModel.movies.isEmpty {
                 MovieCarouselView(movies: watchlistViewModel.movies)
-                    .onReceive(watchlistViewModel.$movies) { movie in
-                        // ASYNC for Steps 1,2
-                        // Step 1: Load the image asset for this movie from TMDB
-                        
-                        // Step 2: Save this movie in the watchlist database
-                    }
             } else {
                 Spacer()
                 Text("Loading...")
@@ -47,6 +41,9 @@ struct WatchlistView: View {
                 //  to MovieCarouselView and scroll itself in there
                 
                 print(movie)
+                // ASYNC for Steps 3,4
+                
+                // Step 3: Save this movie in the watchlist database
             }
         }
     }
