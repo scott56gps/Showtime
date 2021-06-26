@@ -8,12 +8,12 @@
 import SwiftUI
 import Combine
 
-struct ImageService: ResourceFetchable {
+struct ImageService: ResourceTransactable {
     func fetchImage(from url: URL) -> AnyPublisher<UIImage, Error> {
         return fetchResource(url: url)
             .tryMap { data in
                 guard let image = UIImage(data: data) else {
-                    throw MovieRetrievalError.invalidResponse
+                    throw TransactionError.invalidResponse
                 }
                 return image
             }
