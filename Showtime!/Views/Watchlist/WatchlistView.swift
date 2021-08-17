@@ -12,6 +12,7 @@ struct WatchlistView: View {
     @ObservedObject var watchlistViewModel: WatchlistViewModel = WatchlistViewModel()
     @ObservedObject var searchViewModel = MovieSearchViewModel(movieService: SearchService())
     
+    @State var currentIndex = 0
     @State var searchBarIsSelected: Bool = false
     @State var foundMovie: Movie?
     
@@ -20,7 +21,18 @@ struct WatchlistView: View {
             if searchBarIsSelected {
                 MovieSearchResultsPresenter(viewModel: searchViewModel, isPresented: $searchBarIsSelected)
             } else if !watchlistViewModel.movies.isEmpty {
-                MovieCarouselView(movies: watchlistViewModel.movies)
+                if watchlistViewModel.movies.count == 1 {
+                        MovieCard(movie: watchlistViewModel.movies[0])
+                            .padding()
+                } else {
+                    SnapCarousel(spacing: 36, index: $currentIndex, items: watchlistViewModel.movies) { movie in
+                        GeometryReader { geo in
+                            MovieCard(movie: movie, inCollection: true)
+                                .frame(width: geo.size.width)
+                                .padding(.horizontal)
+                        }
+                    }
+                }
             } else {
                 Spacer()
                 Text("Loading...")

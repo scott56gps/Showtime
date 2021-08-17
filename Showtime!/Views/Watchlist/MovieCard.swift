@@ -10,28 +10,32 @@ import Combine
 
 struct MovieCard: View {
     let movie: Movie
+    var inCollection = false
     @StateObject var imageViewModel = ImageViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(movie.title)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .center)
+            VStack(alignment: inCollection ? .leading : .center) {
+                    Text(movie.title)
+                        .padding(.vertical, 10)
+                        .frame(maxWidth: .infinity)
 
-            if imageViewModel.image != nil {
-                Image(uiImage: imageViewModel.image!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } else {
-                Spacer()
+                    if imageViewModel.image != nil {
+                        GeometryReader { geo in
+                            Image(uiImage: imageViewModel.image!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(maxWidth: geo.size.width, maxHeight: geo.size.height - 30, alignment: .center)
+                                .cornerRadius(12)
+                        }
+                    } else {
+                        Spacer()
+                    }
             }
-        }
-        .padding()
-        .onAppear {
-            if let posterPath = movie.posterUrl {
-                imageViewModel.loadImage(posterPath)
+            .onAppear {
+                if let posterPath = movie.posterUrl {
+                    imageViewModel.loadImage(posterPath)
+                }
             }
-        }
     }
 }
 
