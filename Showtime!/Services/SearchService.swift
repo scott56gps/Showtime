@@ -13,7 +13,6 @@ struct SearchService: ResourceTransactable {
     private let tmdbBaseUrl = "https://api.themoviedb.org/3"
     
     func searchMovies(query: String) -> AnyPublisher<MovieSearchResponse, Error> {
-        print("In Search Movies")
         guard let url = URL(string: "\(tmdbBaseUrl)/search/movie") else {
             return Fail(error: TransactionError.invalidEndpoint).eraseToAnyPublisher()
         }

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Movie: Codable, Identifiable {
-    var id: Int
+    var id: Int?
     var title: String
     var posterUrl: String?
     
@@ -25,24 +25,9 @@ struct Movie: Codable, Identifiable {
     }
     
     init(from result: MovieResult) {
-        self.id = result.id
         self.title = result.title
         if let posterPath = result.posterPath {
             self.posterUrl = "http://image.tmdb.org/t/p/original\(posterPath)"
         }
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: MovieCodingKeys.self)
-        self.id = try values.decode(Int.self, forKey: .id)
-        self.title = try values.decode(String.self, forKey: .title)
-        self.posterUrl = try values.decode(String.self, forKey: .posterUrl)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: MovieCodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(title, forKey: .title)
-        try container.encode(posterUrl, forKey: .posterUrl)
     }
 }

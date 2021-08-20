@@ -31,7 +31,7 @@ class ImageViewModel: ObservableObject {
                         print("Error \(error)")
                         self.error = error
                     case .finished:
-                        print("Publisher is finished")
+                        print("Load Image Publisher is finished")
                     }
                 }) { [weak self] (result) in
                     guard let self = self else { return }

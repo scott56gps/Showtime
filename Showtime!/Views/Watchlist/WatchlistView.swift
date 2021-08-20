@@ -46,6 +46,9 @@ struct WatchlistView: View {
         })
         .onReceive(searchViewModel.$foundMovie) { foundMovie in
             if let movie = foundMovie {
+                DispatchQueue.main.async {
+                    watchlistViewModel.saveMovieToWatchlist(movie: movie)
+                }
                 // Step 1: Put the movie onto the watchlist
                 watchlistViewModel.movies.append(movie)
                 
@@ -53,9 +56,10 @@ struct WatchlistView: View {
                 //  to MovieCarouselView and scroll itself in there
                 
                 print(movie)
-                // ASYNC for Steps 3,4
+                // ASYNC for Step 3
                 
                 // Step 3: Save this movie in the watchlist database
+                
             }
         }
     }

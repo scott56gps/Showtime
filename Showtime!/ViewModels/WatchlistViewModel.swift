@@ -33,13 +33,32 @@ class WatchlistViewModel: ObservableObject {
                     print("Error \(error)")
                     self.error = error
                 case .finished:
-                    print("Publisher is finished")
+                    print("Load Watchlist Publisher is finished")
                 }
             }) { [weak self] result in
-                    guard let self = self else { return }
-                    
-                    self.isLoading = false
-                    self.movies = result.movies
+                guard let self = self else { return }
+                
+                self.isLoading = false
+                self.movies = result
+            }
+            .store(in: &subscriptionTokens)
+    }
+    
+    func saveMovieToWatchlist(movie: Movie) {
+        isLoading = true
+        movieService.postToWatchlist(movie: movie)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print("Error \(error)")
+                    self.error = error
+                case .finished:
+                    print("Save Movie Publisher is Finished")
+                }
+            }) { [weak self] createdMovie in
+                guard let self = self else { return }
+                self.isLoading = false
+                self.movies.append(createdMovie)
             }
             .store(in: &subscriptionTokens)
     }

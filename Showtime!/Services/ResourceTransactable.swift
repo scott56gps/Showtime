@@ -52,7 +52,7 @@ extension ResourceTransactable {
         
         var request = URLRequest(url: urlWithComponents)
         request.httpMethod = method
-        request.allHTTPHeaderFields = urlParameters
+        request.allHTTPHeaderFields = headers
         
         return request
     }

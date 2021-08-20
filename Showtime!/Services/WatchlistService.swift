@@ -10,19 +10,19 @@ import Combine
 
 struct WatchlistService: ResourceTransactable {
 //    private let baseAPIURLString = "http://localhost:8000/watchlist" // Uncomment for Simulator Dev
-    private let baseAPIURLString = "http://245c0b45d250.ngrok.io/watchlist" // Uncomment for On-Device Dev
+    private let baseAPIURLString = "http://8e25a3aa3a72.ngrok.io/watchlist" // Uncomment for On-Device Dev
     
-    func getWatchlist() -> AnyPublisher<WatchlistResponse, Error> {
+    func getWatchlist() -> AnyPublisher<[Movie], Error> {
         guard let url = URL(string: baseAPIURLString) else {
             return Fail(error: TransactionError.invalidEndpoint).eraseToAnyPublisher()
         }
         
         return fetchResource(url: url)
-            .decode(type: WatchlistResponse.self, decoder: JSONDecoder())
+            .decode(type: [Movie].self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
     
-    func postToWatchlist(movie: Movie) -> AnyPublisher<WatchlistResponse, Error> {
+    func postToWatchlist(movie: Movie) -> AnyPublisher<Movie, Error> {
         guard let url = URL(string: baseAPIURLString) else {
             return Fail(error: TransactionError.invalidEndpoint).eraseToAnyPublisher()
         }
@@ -31,8 +31,8 @@ struct WatchlistService: ResourceTransactable {
             return Fail(error: TransactionError.invalidRequest).eraseToAnyPublisher()
         }
         
-        return postResource(url: url, resource: jsonMovie)
-            .decode(type: WatchlistResponse.self, decoder: JSONDecoder())
+        return postResource(url: url, resource: jsonMovie, headers: ["Content-Type" : "application/json"])
+            .decode(type: Movie.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }
