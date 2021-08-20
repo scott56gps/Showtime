@@ -46,7 +46,7 @@ extension ResourceTransactable {
     }
     
     private func constructURLRequestWithComponents(url: URL, method: String, headers: [String : String]?, urlParameters: [String : String]?) -> URLRequest? {
-        guard let urlWithComponents = constructURLWithComponents(url: url, parameters: urlParameters) else {
+        guard let urlWithComponents = constructURLWithComponents(url: url, queryParameters: urlParameters) else {
             return nil
         }
         
@@ -57,24 +57,17 @@ extension ResourceTransactable {
         return request
     }
     
-    private func constructURLWithComponents(url: URL, parameters: [String : String]?) -> URL? {
-        guard !url.absoluteString.isEmpty else {
-            return nil
-        }
+    private func constructURLWithComponents(url: URL, queryParameters: [String : String]?) -> URL? {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return nil
         }
         
         var queryItems: [URLQueryItem] = []
-        if let parameters = parameters {
+        if let parameters = queryParameters {
             queryItems.append(contentsOf: parameters.map { URLQueryItem(name: $0.key, value: $0.value) })
         }
         
         urlComponents.queryItems = queryItems
-        guard let requestUrl = urlComponents.url else {
-            return nil
-        }
-        
-        return requestUrl
+        return urlComponents.url
     }
 }
