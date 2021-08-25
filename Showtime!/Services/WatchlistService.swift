@@ -36,17 +36,6 @@ struct WatchlistService: ResourceTransactable {
     }
 }
 
-enum MovieListEndpoint: String {
-    case watchlist
-    
-    var description: String {
-        switch self {
-            case .watchlist:
-                return "Watchlist"
-            }
-    }
-}
-
 enum TransactionError: String, Error {
     case apiError
     case invalidEndpoint
