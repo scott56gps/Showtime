@@ -25,7 +25,7 @@ struct WatchlistView: View {
                         MovieCard(movie: watchlistViewModel.movies[0])
                             .padding()
                 } else {
-                    SnapCarousel(spacing: 36, index: $currentIndex, items: watchlistViewModel.movies) { movie in
+                    SnapCarousel(spacing: 36, index: $currentIndex, items: watchlistViewModel.movies.reversed()) { movie in
                         GeometryReader { geo in
                             MovieCard(movie: movie, inCollection: true)
                                 .frame(width: geo.size.width)
@@ -50,7 +50,7 @@ struct WatchlistView: View {
                     watchlistViewModel.saveMovieToWatchlist(movie: movie)
                 }
                 // Step 1: Put the movie onto the watchlist
-                watchlistViewModel.movies.append(movie)
+//                watchlistViewModel.movies.append(movie)
                 
                 // Step 2: Scroll the watchlist to the newly added movie - might be appropriate to pass the whole watchlistViewModel
                 //  to MovieCarouselView and scroll itself in there
