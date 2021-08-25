@@ -9,8 +9,7 @@ import SwiftUI
 import Combine
 
 struct WatchlistService: ResourceTransactable {
-//    private let baseAPIURLString = "http://localhost:8000/watchlist" // Uncomment for Simulator Dev
-    private let baseAPIURLString = "http://8e25a3aa3a72.ngrok.io/watchlist" // Uncomment for On-Device Dev
+    private let baseAPIURLString = "https://ancient-sierra-46110.herokuapp.com/watchlist"
     
     func getWatchlist() -> AnyPublisher<[Movie], Error> {
         guard let url = URL(string: baseAPIURLString) else {
