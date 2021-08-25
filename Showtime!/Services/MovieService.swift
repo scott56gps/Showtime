@@ -11,8 +11,7 @@ import Combine
 
 struct MovieService {
     private let apiKey = "PUT API KEY HERE"
-    private let baseAPIURLString = "http://localhost:8000/" // Uncomment for Simulator Dev
-//    private let baseAPIURLString = "http://fa09181f0892.ngrok.io/" // Uncomment for On-Device Dev
+    private let baseAPIURLString = "https://ancient-sierra-46110.herokuapp.com/watchlist"
     
     func getMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<[Movie], MovieRetrievalError>) -> ()) -> AnyCancellable? {
         guard let url = URL(string: "\(baseAPIURLString)\(endpoint.rawValue)") else {
