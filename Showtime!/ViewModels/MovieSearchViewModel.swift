@@ -18,10 +18,10 @@ class MovieSearchViewModel: ObservableObject {
     
     private var subscriptionToken: AnyCancellable?
     private var subscriptionTokens = Set<AnyCancellable>()
-    let movieService: SearchService
+    let searchService: SearchService
     
-    init(movieService: SearchService) {
-        self.movieService = movieService
+    init() {
+        self.searchService = SearchService()
     }
     
     func beginObserving() {
@@ -42,7 +42,7 @@ class MovieSearchViewModel: ObservableObject {
         
         guard !text.isEmpty else { return }
         self.isLoading = true
-        self.movieService.searchMovies(query: text)
+        self.searchService.searchMovies(query: text)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):

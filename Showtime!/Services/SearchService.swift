@@ -9,21 +9,16 @@ import Foundation
 import Combine
 
 struct SearchService: ResourceTransactable {
-    private let tmdbApiKey = ""
-    private let tmdbBaseUrl = "https://api.themoviedb.org/3"
+    private let apiKey: String = ProcessInfo.processInfo.environment["search_movies_api_key"]!
+    private let baseUrl: String = ProcessInfo.processInfo.environment["search_movies_base_url"]!
     
     func searchMovies(query: String) -> AnyPublisher<MovieSearchResponse, Error> {
-        guard let url = URL(string: "\(tmdbBaseUrl)/search/movie") else {
-            return Fail(error: TransactionError.invalidEndpoint).eraseToAnyPublisher()
-        }
-        
-        if tmdbApiKey.isEmpty {
-            print("API Key is empty")
+        guard let url = URL(string: "\(baseUrl)/search/movie") else {
             return Fail(error: TransactionError.invalidEndpoint).eraseToAnyPublisher()
         }
         
         return fetchResource(url: url, urlParameters: [
-            "api_key" : tmdbApiKey,
+            "api_key" : apiKey,
             "language" : "en-us",
             "include_adult" : "false",
             "region" : "US",

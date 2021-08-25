@@ -9,8 +9,8 @@ import SwiftUI
 
 struct WatchlistView: View {
     // TODO: Convert MovieService invocation to a singleton that I pass through the initializer
-    @ObservedObject var watchlistViewModel: WatchlistViewModel = WatchlistViewModel()
-    @ObservedObject var searchViewModel = MovieSearchViewModel(movieService: SearchService())
+    @ObservedObject var watchlistViewModel = WatchlistViewModel()
+    @ObservedObject var searchViewModel = MovieSearchViewModel()
     
     @State var currentIndex = 0
     @State var searchBarIsSelected: Bool = false

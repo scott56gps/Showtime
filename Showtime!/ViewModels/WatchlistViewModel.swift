@@ -13,20 +13,19 @@ class WatchlistViewModel: ObservableObject {
     @Published var movies: [Movie] = []
     @Published var isLoading = false
     @Published var error: Error?
-    private let movieService: WatchlistService
+    private let watchlistService: WatchlistService
     private var subscriptionTokens = Set<AnyCancellable>()
     
     // The properties of the ViewModel are accessible to the View, and
     //  thus should only be applicable to the View
     
     init() {
-        print("In View Model Initializer")
-        self.movieService = WatchlistService()
+        self.watchlistService = WatchlistService()
     }
     
     func loadWatchlist() {
         isLoading = true
-        movieService.getWatchlist()
+        watchlistService.getWatchlist()
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
@@ -46,7 +45,7 @@ class WatchlistViewModel: ObservableObject {
     
     func saveMovieToWatchlist(movie: Movie) {
         isLoading = true
-        movieService.postToWatchlist(movie: movie)
+        watchlistService.postToWatchlist(movie: movie)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
