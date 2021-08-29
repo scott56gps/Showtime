@@ -8,38 +8,26 @@
 import Foundation
 
 struct Movie: Codable, Identifiable {
-    var id: Int
+    var id: Int?
     var title: String
-    var posterUrlString: String?
-    var posterUrl: URL {
-        return URL(string: posterUrlString ?? "")!
-    }
+    var posterUrl: String?
     
-    enum CodingKeys: String, CodingKey {
-        case posterUrlString = "poster_url"
+    enum MovieCodingKeys: String, CodingKey {
+        case posterUrl = "poster_url"
         case id
         case title
-        case posterUrl = "poster_url_object"
     }
     
-    init(id: Int, title: String, posterUrlString: String?) {
+    init(id: Int, title: String, posterUrl: String?) {
         self.id = id
         self.title = title
-        self.posterUrlString = posterUrlString
+        self.posterUrl = posterUrl
     }
     
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(Int.self, forKey: .id)
-        title = try values.decode(String.self, forKey: .title)
-        posterUrlString = try values.decode(String?.self, forKey: .posterUrlString)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(title, forKey: .title)
-        try container.encode(posterUrlString, forKey: .posterUrlString)
-        try container.encode(posterUrl, forKey: .posterUrl)
+    init(from result: MovieResult) {
+        self.title = result.title
+        if let posterPath = result.posterPath {
+            self.posterUrl = "http://image.tmdb.org/t/p/original\(posterPath)"
+        }
     }
 }
