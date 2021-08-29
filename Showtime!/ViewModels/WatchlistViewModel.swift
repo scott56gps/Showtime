@@ -10,30 +10,55 @@ import Combine
 import SwiftUI
 
 class WatchlistViewModel: ObservableObject {
-    @Published var movies: [Movie]?
-    private let movieService: MovieService
-    var cancellationToken: AnyCancellable?
+    @Published var movies: [Movie] = []
+    @Published var isLoading = false
+    @Published var error: Error?
+    private let watchlistService: WatchlistService
+    private var subscriptionTokens = Set<AnyCancellable>()
     
     // The properties of the ViewModel are accessible to the View, and
     //  thus should only be applicable to the View
     
     init() {
-        print("In View Model Initializer")
-        self.movieService = MovieService()
-        loadWatchlist()
+        self.watchlistService = WatchlistService()
     }
     
     func loadWatchlist() {
-        cancellationToken = movieService.getMovies(from: .watchlist) { [weak self] (result) in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let response):
-                self.movies = response
-            case .failure(let error):
-                // TODO: Handle Error
-                print(error)
+        isLoading = true
+        watchlistService.getWatchlist()
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print("Error \(error)")
+                    self.error = error
+                case .finished:
+                    break
+                }
+            }) { [weak self] result in
+                guard let self = self else { return }
+                
+                self.isLoading = false
+                self.movies = result
             }
-        }
+            .store(in: &subscriptionTokens)
+    }
+    
+    func saveMovieToWatchlist(movie: Movie) {
+        isLoading = true
+        watchlistService.postToWatchlist(movie: movie)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print("Error \(error)")
+                    self.error = error
+                case .finished:
+                    break
+                }
+            }) { [weak self] createdMovie in
+                guard let self = self else { return }
+                self.isLoading = false
+                self.movies.append(createdMovie)
+            }
+            .store(in: &subscriptionTokens)
     }
 }

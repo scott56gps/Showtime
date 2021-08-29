@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MovieCarouselView: View {
     var movies: [Movie]
-    var colors: [Color] = [.blue, .green, .red, .orange, .black, .yellow]
     
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
@@ -26,6 +25,6 @@ struct MovieCarouselView: View {
 
 struct MovieCarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCarouselView(movies: [Movie(id: 0, title: "Tommy Boy", posterUrlString: nil)])
+        MovieCarouselView(movies: [Movie(id: 0, title: "Tommy Boy", posterUrl: nil)])
     }
 }
