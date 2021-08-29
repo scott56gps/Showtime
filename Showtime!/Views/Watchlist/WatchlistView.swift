@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WatchlistView: View {
-    // TODO: Convert MovieService invocation to a singleton that I pass through the initializer
     @ObservedObject var watchlistViewModel = WatchlistViewModel()
     @ObservedObject var searchViewModel = MovieSearchViewModel()
     
@@ -49,17 +48,6 @@ struct WatchlistView: View {
                 DispatchQueue.main.async {
                     watchlistViewModel.saveMovieToWatchlist(movie: movie)
                 }
-                // Step 1: Put the movie onto the watchlist
-//                watchlistViewModel.movies.append(movie)
-                
-                // Step 2: Scroll the watchlist to the newly added movie - might be appropriate to pass the whole watchlistViewModel
-                //  to MovieCarouselView and scroll itself in there
-                
-                print(movie)
-                // ASYNC for Step 3
-                
-                // Step 3: Save this movie in the watchlist database
-                
             }
         }
     }
