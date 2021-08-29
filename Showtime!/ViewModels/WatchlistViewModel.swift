@@ -32,7 +32,7 @@ class WatchlistViewModel: ObservableObject {
                     print("Error \(error)")
                     self.error = error
                 case .finished:
-                    print("Load Watchlist Publisher is finished")
+                    break
                 }
             }) { [weak self] result in
                 guard let self = self else { return }
@@ -52,7 +52,7 @@ class WatchlistViewModel: ObservableObject {
                     print("Error \(error)")
                     self.error = error
                 case .finished:
-                    print("Save Movie Publisher is Finished")
+                    break
                 }
             }) { [weak self] createdMovie in
                 guard let self = self else { return }

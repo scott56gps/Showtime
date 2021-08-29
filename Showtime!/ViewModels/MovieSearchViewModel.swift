@@ -49,7 +49,7 @@ class MovieSearchViewModel: ObservableObject {
                     print("Error \(error)")
                     self.error = error
                 case .finished:
-                    print("Search Movies Publisher is finished")
+                    break
                 }
             }) { [weak self] result in
                 guard let self = self, self.searchText == text else { return }
