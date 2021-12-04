@@ -1,14 +1,13 @@
 //
-//  Showtime_Tests.swift
-//  Showtime!Tests
+//  ShowtimeTests.swift
+//  ShowtimeTests
 //
-//  Created by Scott Nicholes on 4/23/21.
+//  Created by Scott Nicholes on 11/1/21.
 //
 
 import XCTest
-@testable import Showtime_
 
-class Showtime_Tests: XCTestCase {
+class ShowtimeTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,7 +24,7 @@ class Showtime_Tests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
