@@ -11,7 +11,7 @@ struct PresenterView: View {
     var body: some View {
         VStack {
             RecommendationStack()
-                .frame(width: .infinity, height: 200, alignment: .top)
+                .frame(height: 200, alignment: .top)
             Spacer()
         }
     }
