@@ -9,7 +9,11 @@ import SwiftUI
 
 struct PresenterView: View {
     var body: some View {
-        RecommendationView()
+        VStack {
+            RecommendationStack()
+                .frame(width: .infinity, height: 200, alignment: .top)
+            Spacer()
+        }
     }
 }
 
