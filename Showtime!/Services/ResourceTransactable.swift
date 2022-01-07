@@ -71,3 +71,27 @@ extension ResourceTransactable {
         return urlComponents.url
     }
 }
+
+enum TransactionError: String, Error {
+    case apiError
+    case invalidEndpoint
+    case invalidRequest
+    case invalidResponse
+    case noData
+    case serializationError
+    
+    var localizedDescription: String {
+        switch self {
+        case .apiError: return "Failed to fetch data"
+        case .invalidRequest: return "Invalid request"
+        case .invalidResponse: return "Invalid response"
+        case .invalidEndpoint: return "Invalid endpoint"
+        case .noData: return "No data retrieved"
+        case .serializationError: return "Failed to decode data"
+        }
+    }
+    
+    var errorHumanReadable: [String : Any] {
+        [NSLocalizedDescriptionKey: localizedDescription]
+    }
+}

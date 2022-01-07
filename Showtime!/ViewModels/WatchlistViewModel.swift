@@ -15,15 +15,7 @@ class WatchlistViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: Error?
     private let apiClient = Networker(baseURL: "https://ancient-sierra-46110.herokuapp.com")
-    private let watchlistService: WatchlistService
     private var subscriptionTokens = Set<AnyCancellable>()
-    
-    // The properties of the ViewModel are accessible to the View, and
-    //  thus should only be applicable to the View
-    
-    init() {
-        self.watchlistService = WatchlistService()
-    }
     
     func loadWatchlist() {
         isLoading = true
