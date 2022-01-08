@@ -9,7 +9,7 @@ import Networker
 import UIKit
 
 struct RetrieveImageRequest: Requestable {
-    typealias ResultType = CodableImage
+    typealias ResultType = URL
     var path: String
     var method: HTTPMethod = .get
     var contentType = ""

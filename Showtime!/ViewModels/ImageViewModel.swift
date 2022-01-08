@@ -7,10 +7,12 @@
 
 import SwiftUI
 import Combine
+import Networker
 
 class ImageViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published var error: Error?
+    private let apiClient = Networker(baseURL: "")
     private let imageService: ImageService
     private var subscriptionTokens = Set<AnyCancellable>()
     
@@ -23,22 +25,23 @@ class ImageViewModel: ObservableObject {
     }
     
     func loadImage(_ urlString: String) {
-        if let url = URL(string: urlString) {
-            imageService.fetchImage(from: url)
-                .sink(receiveCompletion: { result in
-                    switch result {
-                    case .failure(let error):
-                        print("Error \(error)")
-                        self.error = error
-                    case .finished:
-                        break
-                    }
-                }) { [weak self] (result) in
-                    guard let self = self else { return }
-                    
-                    self.image = result
+        apiClient.dispatchForFile(RetrieveImageRequest(path: urlString))
+            .map { UIImage(contentsOfFile: $0.path) }
+            .replaceError(with: UIImage(named: "Tommy Boy"))
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print("Error \(error)")
+                    self.error = error
+                case .finished:
+                    break
                 }
-                .store(in: &subscriptionTokens)
-        }
+            }) { [weak self] (result) in
+                guard let self = self else { return }
+
+                self.image = result
+            }
+            .store(in: &subscriptionTokens)
     }
 }
