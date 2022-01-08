@@ -13,7 +13,6 @@ class ImageViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published var error: Error?
     private let apiClient = Networker(baseURL: "")
-    private let imageService: ImageService
     private var subscriptionTokens = Set<AnyCancellable>()
     
     /**
@@ -21,7 +20,6 @@ class ImageViewModel: ObservableObject {
      */
     init(image: UIImage? = nil) {
         self.image = image
-        self.imageService = ImageService()
     }
     
     func loadImage(_ urlString: String) {
