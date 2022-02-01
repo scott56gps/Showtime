@@ -12,7 +12,7 @@ import Networker
 class ImageViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published var error: Error?
-    private let apiClient = Networker(baseURL: "")
+    private var apiClient = Networker(baseURL: "")
     private var subscriptionTokens = Set<AnyCancellable>()
     
     /**
@@ -23,7 +23,8 @@ class ImageViewModel: ObservableObject {
     }
     
     func loadImage(_ urlString: String) {
-        apiClient.dispatchForFile(RetrieveImageRequest(path: urlString))
+        apiClient.baseURL = urlString
+        apiClient.dispatchForFile(RetrieveImageRequest(path: ""))
             .map { UIImage(contentsOfFile: $0.path) }
             .replaceError(with: UIImage(named: "Tommy Boy"))
             .receive(on: DispatchQueue.main)
