@@ -13,6 +13,7 @@ struct SubmitMovieToWatchlistRequest: Requestable {
     var method: HTTPMethod = .post
     var contentType = "application/json"
     var body: [String : Any]?
+    var queryParams: [String : String]? = nil
     var headers: [String : String]? = ["Content-Type" : "application/json"]
     
     init(body: [String : Any]) {

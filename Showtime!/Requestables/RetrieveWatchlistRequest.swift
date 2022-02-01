@@ -13,5 +13,6 @@ struct RetrieveWatchlistRequest: Requestable {
     var method: HTTPMethod = .get
     var contentType = "application/json"
     var body: [String : Any]? = nil
+    var queryParams: [String : String]? = nil
     var headers: [String : String]? = nil
 }
