@@ -17,21 +17,11 @@ class MovieSearchViewModel: ObservableObject {
     @Published var error: Error?
     @Published var foundMovie: Movie?
     
-    private let apiClient: Networker
+    private let apiClient = Networker(baseURL: ProcessInfo.processInfo.environment["search_movies_base_url"] ?? "https://api.themoviedb.org/3")
     private let apiKey: String? = ProcessInfo.processInfo.environment["search_movies_api_key"]
-    private let baseUrl: String? = ProcessInfo.processInfo.environment["search_movies_base_url"]
     
     private var subscriptionToken: AnyCancellable?
     private var subscriptionTokens = Set<AnyCancellable>()
-    
-    init() {
-        if let baseUrl = baseUrl {
-            apiClient = Networker(baseURL: baseUrl)
-        } else {
-            print("Initializing MovieSearchViewModel with default baseUrl because environment var baseUrl was not found")
-            apiClient = Networker(baseURL: "https://api.themoviedb.org/3")
-        }
-    }
     
     func beginObserving() {
         guard subscriptionToken == nil else { return }
