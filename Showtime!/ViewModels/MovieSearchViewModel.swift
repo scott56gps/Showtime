@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Networker
 
 class MovieSearchViewModel: ObservableObject {
     @Published var searchText = ""
@@ -16,13 +17,11 @@ class MovieSearchViewModel: ObservableObject {
     @Published var error: Error?
     @Published var foundMovie: Movie?
     
+    private let apiClient = Networker(baseURL: ProcessInfo.processInfo.environment["search_movies_base_url"] ?? "https://api.themoviedb.org/3")
+    private let apiKey: String? = ProcessInfo.processInfo.environment["search_movies_api_key"]
+    
     private var subscriptionToken: AnyCancellable?
     private var subscriptionTokens = Set<AnyCancellable>()
-    let searchService: SearchService
-    
-    init() {
-        self.searchService = SearchService()
-    }
     
     func beginObserving() {
         guard subscriptionToken == nil else { return }
@@ -41,8 +40,22 @@ class MovieSearchViewModel: ObservableObject {
         self.error = nil
         
         guard !text.isEmpty else { return }
+        guard let apiKey = apiKey else {
+            print("Could not perform search because apiKey was not found")
+            return
+        }
+
         self.isLoading = true
-        self.searchService.searchMovies(query: text)
+        let queryParams = [
+            "api_key" : apiKey,
+            "language" : "en-us",
+            "include_adult" : "false",
+            "region" : "US",
+            "query" : text
+        ]
+        
+        apiClient.dispatch(SearchMovieRequest(queryParams: queryParams))
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
