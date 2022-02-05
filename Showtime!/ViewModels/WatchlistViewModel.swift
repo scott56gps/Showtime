@@ -57,4 +57,32 @@ class WatchlistViewModel: ObservableObject {
             }
             .store(in: &subscriptionTokens)
     }
+    
+    func deleteMovieFromWatchlist(movie: Movie) {
+        isLoading = true
+        guard let id = movie.id else {
+            print("Could not delete movie because id was nil")
+            return
+        }
+        
+        apiClient.dispatch(DeleteMovieRequest(id: id))
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print("Error \(error)")
+                    self.error = error
+                case .finished:
+                    break
+                }
+            }) { [weak self] deletedMovie in
+                if let index = self?.movies.firstIndex(where: { movie in
+                    movie.id == deletedMovie.id
+                }) {
+                    self?.movies.remove(at: index)
+                }
+                self?.isLoading = false
+            }
+            .store(in: &subscriptionTokens)
+    }
 }

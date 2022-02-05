@@ -13,7 +13,7 @@ struct DeleteMovieRequest: Requestable {
     var path: String
     var method: HTTPMethod = .delete
     
-    init(_ id: Int) {
+    init(id: Int) {
         path = "/watchlist/\(id)"
     }
 }
