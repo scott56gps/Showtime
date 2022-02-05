@@ -40,7 +40,7 @@ class WatchlistViewModel: ObservableObject {
     
     func saveMovieToWatchlist(movie: Movie) {
         isLoading = true
-        apiClient.dispatch(SubmitMovieToWatchlistRequest(body: movie.asDictionary))
+        apiClient.dispatch(SubmitMovieToWatchlistRequest(movie.asDictionary))
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 switch result {

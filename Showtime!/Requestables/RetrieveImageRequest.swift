@@ -13,9 +13,6 @@ struct RetrieveImageRequest: Requestable {
     var path: String
     var method: HTTPMethod = .get
     var contentType = ""
-    var body: [String : Any]? = nil
-    var queryParams: [String : String]? = nil
-    var headers: [String : String]? = nil
     
     init(path: String) {
         self.path = path

@@ -11,12 +11,10 @@ struct SubmitMovieToWatchlistRequest: Requestable {
     typealias ResultType = Movie
     var path = "/watchlist"
     var method: HTTPMethod = .post
-    var contentType = "application/json"
     var body: [String : Any]?
-    var queryParams: [String : String]? = nil
     var headers: [String : String]? = ["Content-Type" : "application/json"]
     
-    init(body: [String : Any]) {
+    init(_ body: [String : Any]) {
         self.body = body
     }
 }
