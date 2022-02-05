@@ -7,9 +7,10 @@
 
 import Foundation
 import Networker
+import Combine
 
 struct DeleteMovieRequest: Requestable {
-    typealias ResultType = Movie
+    typealias ResultType = Int
     var path: String
     var method: HTTPMethod = .delete
     

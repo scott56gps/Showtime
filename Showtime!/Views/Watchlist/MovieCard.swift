@@ -14,28 +14,28 @@ struct MovieCard: View {
     @StateObject var imageViewModel = ImageViewModel()
     
     var body: some View {
-            VStack(alignment: inCollection ? .leading : .center) {
-                    Text(movie.title)
-                        .padding(.vertical, 10)
-                        .frame(maxWidth: .infinity)
-
-                    if imageViewModel.image != nil {
-                        GeometryReader { geo in
-                            Image(uiImage: imageViewModel.image!)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(maxWidth: geo.size.width, maxHeight: geo.size.height - 30, alignment: .center)
-                                .cornerRadius(12)
-                        }
-                    } else {
-                        Spacer()
-                    }
-            }
-            .onAppear {
-                if let posterPath = movie.posterUrl {
-                    imageViewModel.loadImage(posterPath)
+        VStack(alignment: inCollection ? .leading : .center) {
+            Text(movie.title)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity)
+            
+            if imageViewModel.image != nil {
+                GeometryReader { geo in
+                    Image(uiImage: imageViewModel.image!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: geo.size.width, maxHeight: geo.size.height - 30, alignment: .center)
+                        .cornerRadius(12)
                 }
+            } else {
+                Spacer()
             }
+        }
+        .onAppear {
+            if let posterPath = movie.posterUrl {
+                imageViewModel.loadImage(posterPath)
+            }
+        }
     }
 }
 

@@ -75,9 +75,9 @@ class WatchlistViewModel: ObservableObject {
                 case .finished:
                     break
                 }
-            }) { [weak self] deletedMovie in
+            }) { [weak self] deletedId in
                 if let index = self?.movies.firstIndex(where: { movie in
-                    movie.id == deletedMovie.id
+                    movie.id == deletedId
                 }) {
                     self?.movies.remove(at: index)
                 }
