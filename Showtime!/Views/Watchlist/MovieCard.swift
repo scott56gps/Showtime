@@ -32,6 +32,10 @@ struct MovieCard: View {
                 Spacer()
             }
         }
+        Image(systemName: "pip.remove")
+            .onTapGesture {
+                watchlistViewModel.deleteMovie(movie: movie)
+            }
         .onAppear {
             if let posterPath = movie.posterUrl {
                 imageViewModel.loadImage(posterPath)
