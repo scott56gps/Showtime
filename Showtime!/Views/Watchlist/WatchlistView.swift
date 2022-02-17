@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct WatchlistView: View {
-    @ObservedObject var watchlistViewModel = WatchlistViewModel()
-    @ObservedObject var searchViewModel = MovieSearchViewModel()
+    @StateObject var watchlistViewModel = WatchlistViewModel()
+    @StateObject var searchViewModel = MovieSearchViewModel()
     
     @State var currentIndex = 0
     @State var searchBarIsSelected: Bool = false
@@ -21,12 +21,12 @@ struct WatchlistView: View {
                 MovieSearchResultsPresenter(viewModel: searchViewModel, isPresented: $searchBarIsSelected)
             } else if !watchlistViewModel.movies.isEmpty {
                 if watchlistViewModel.movies.count == 1 {
-                        MovieCard(movie: watchlistViewModel.movies[0])
+                    MovieCard(movie: watchlistViewModel.movies[0], watchlistViewModel: watchlistViewModel)
                             .padding()
                 } else {
                     SnapCarousel(spacing: 36, index: $currentIndex, items: watchlistViewModel.movies.reversed()) { movie in
                         GeometryReader { geo in
-                            MovieCard(movie: movie, inCollection: true)
+                            MovieCard(movie: movie, inCollection: true, watchlistViewModel: watchlistViewModel)
                                 .frame(width: geo.size.width)
                                 .padding(.horizontal)
                         }

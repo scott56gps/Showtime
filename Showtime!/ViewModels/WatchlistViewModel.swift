@@ -40,7 +40,7 @@ class WatchlistViewModel: ObservableObject {
     
     func saveMovieToWatchlist(movie: Movie) {
         isLoading = true
-        apiClient.dispatch(SubmitMovieToWatchlistRequest(body: movie.asDictionary))
+        apiClient.dispatch(SubmitMovieToWatchlistRequest(movie.asDictionary))
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 switch result {
@@ -54,6 +54,34 @@ class WatchlistViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.isLoading = false
                 self.movies.append(createdMovie)
+            }
+            .store(in: &subscriptionTokens)
+    }
+    
+    func deleteMovie(movie: Movie) {
+        isLoading = true
+        guard let id = movie.id else {
+            print("Could not delete movie because id was nil")
+            return
+        }
+        
+        apiClient.dispatch(DeleteMovieRequest(id: id))
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print("Error \(error)")
+                    self.error = error
+                case .finished:
+                    break
+                }
+            }) { [weak self] deletedId in
+                if let index = self?.movies.firstIndex(where: { movie in
+                    movie.id == deletedId
+                }) {
+                    self?.movies.remove(at: index)
+                }
+                self?.isLoading = false
             }
             .store(in: &subscriptionTokens)
     }
