@@ -58,7 +58,7 @@ class WatchlistViewModel: ObservableObject {
             .store(in: &subscriptionTokens)
     }
     
-    func deleteMovieFromWatchlist(movie: Movie) {
+    func deleteMovie(movie: Movie) {
         isLoading = true
         guard let id = movie.id else {
             print("Could not delete movie because id was nil")
