@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import Networker
+import os
 
 class MovieSearchViewModel: ObservableObject {
     @Published var searchText = ""
@@ -17,11 +18,25 @@ class MovieSearchViewModel: ObservableObject {
     @Published var error: Error?
     @Published var foundMovie: Movie?
     
-    private let apiClient = Networker(baseURL: ProcessInfo.processInfo.environment["search_movies_base_url"] ?? "https://api.themoviedb.org/3")
-    private let apiKey: String? = ProcessInfo.processInfo.environment["search_movies_api_key"]
+    private let apiClient: Networker
+    private let apiKey: String
     
     private var subscriptionToken: AnyCancellable?
     private var subscriptionTokens = Set<AnyCancellable>()
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "network")
+    
+    init() {
+        guard let searchBaseUrl = Bundle.main.infoDictionary?["SEARCH_API_BASE_URL"] as? String else {
+            logger.error("Could not initialize MovieSearchViewModel because baseUrl was not found in app Info Property List")
+            fatalError()
+        }
+        guard let searchApiKey = Bundle.main.infoDictionary?["SEARCH_API_KEY"] as? String else {
+            logger.error("Could not initialize MovieSearchViewModel because apiKey was not found in app Info Property List")
+            fatalError()
+        }
+        apiClient = Networker(baseURL: searchBaseUrl)
+        apiKey = searchApiKey
+    }
     
     func beginObserving() {
         guard subscriptionToken == nil else { return }
@@ -40,10 +55,6 @@ class MovieSearchViewModel: ObservableObject {
         self.error = nil
         
         guard !text.isEmpty else { return }
-        guard let apiKey = apiKey else {
-            print("Could not perform search because apiKey was not found")
-            return
-        }
 
         self.isLoading = true
         let queryParams = [
