@@ -28,14 +28,12 @@ struct MovieCard: View {
                         .frame(maxWidth: geo.size.width, maxHeight: geo.size.height - 30, alignment: .center)
                         .cornerRadius(12)
                 }
+                Image(systemName: "pip.remove")
+                    .onTapGesture { watchlistViewModel.deleteMovie(movie: movie) }
             } else {
                 Spacer()
             }
         }
-        Image(systemName: "pip.remove")
-            .onTapGesture {
-                watchlistViewModel.deleteMovie(movie: movie)
-            }
         .onAppear {
             if let posterPath = movie.posterUrl {
                 imageViewModel.loadImage(posterPath)
