@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "MovieSearchViewModel.search(text:):MovieSearchViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "SearchMovieRequest(queryParams: queryParams)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Networker.dispatchForFile&lt;&#x3c4;_0_0&gt;(_:):Networker.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
